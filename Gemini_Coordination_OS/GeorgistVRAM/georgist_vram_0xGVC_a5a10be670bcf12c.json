@@ -1,0 +1,13 @@
+{
+  "baseline": "G_Universal_Baseline v16.79",
+  "coordinates": "[M24:D36:P3]",
+  "node_id": "node_melusine_prime",
+  "allocated_vram_gb": 24.0,
+  "gross_tax_due": 350.0,
+  "entropy_efficiency_rebate": 0.9995,
+  "net_tax_payable": 0.17499999999998073,
+  "mutual_credit_cleared": 349.82500000000005,
+  "timestamp": "2026-10-26T05:46:01.670030",
+  "gvc_hash": "0xGVC_a5a10be670bcf12c",
+  "system_state": "GEORGIST_VRAM_CLEARING_ACTIVE"
+}

@@ -1,0 +1,15 @@
+{
+  "baseline": "G_Universal_Baseline v16.79",
+  "coordinates": "[M36:D36:P4]",
+  "node_triangle": [
+    "did:nostr:alpha1",
+    "did:nostr:beta2",
+    "did:nostr:gamma3"
+  ],
+  "obligation_cleared": 1500.0,
+  "collapsed_liquidity": 2427.0,
+  "novation_status": "TRIAD_NOVATION_GLUED_VIA_SHEAF_COHOMOLOGY",
+  "timestamp": "2026-10-26T05:47:14.264256",
+  "nc_hash": "0xNC_ee195af2bdf7b888",
+  "system_state": "NOSTR_CREDIT_CLEARING_ACTIVE"
+}

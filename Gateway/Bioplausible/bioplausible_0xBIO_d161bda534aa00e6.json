@@ -1,0 +1,10 @@
+{
+  "baseline": "G_Universal_Baseline v16.79",
+  "coordinates": "[M50:D48:P1]",
+  "corpus_id": "Cold_Substrate_Vaults_Archive_v2",
+  "free_energy_bound": 0.0018,
+  "filter_status": "THERMODYNAMIC_EQUILIBRIUM_VERIFIED",
+  "timestamp": "2026-10-26T04:44:32.320469",
+  "bio_hash": "0xBIO_d161bda534aa00e6",
+  "system_state": "BIOPLAUSIBLE_GATE_ACTIVE"
+}

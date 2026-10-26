@@ -1,0 +1,12 @@
+{
+  "baseline": "G_Universal_Baseline v16.78",
+  "source_tensor_hash": "0xOM16_e8_99c440c0115a8ad2",
+  "geometric_truth_value": {
+    "frequency": 0.97,
+    "confidence": 0.95
+  },
+  "e8_lattice_alignment": "GEOMETRICALLY_STABLE",
+  "timestamp": "2026-10-25T22:00:48.121677",
+  "inference_hash": "0xOM16_nars_0d1db32d7d622e13",
+  "status": "NATIVE_OMEGA_NARS_INFERENCE_COMPLETE"
+}

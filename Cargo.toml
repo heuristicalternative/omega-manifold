@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "omega_core",
+    "omega_daemon"
+]
+resolver = "2"

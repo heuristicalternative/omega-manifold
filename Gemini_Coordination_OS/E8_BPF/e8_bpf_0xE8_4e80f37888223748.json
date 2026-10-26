@@ -1,0 +1,9 @@
+{
+  "baseline": "G_Universal_Baseline v16.79",
+  "coordinates": "[M50:D54:P8]",
+  "root_space_dimensions": 248,
+  "bpf_status": "E8_ROOT_SPACE_JITTER_MAPPED_TO_BFT",
+  "timestamp": "2026-10-26T04:47:21.546452",
+  "e8_hash": "0xE8_4e80f37888223748",
+  "system_state": "E8_EBPF_DRIVER_ACTIVE_IN_VFS"
+}

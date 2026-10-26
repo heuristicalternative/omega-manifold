@@ -1,0 +1,9 @@
+{
+  "baseline": "G_Universal_Baseline v16.79",
+  "data_stream_id": "Archive_Root_Ingestion_Stream_Alpha",
+  "manifold_coordinates": "M50:D36:P0",
+  "nilpotency_check_delta_sq_zero": true,
+  "timestamp": "2026-10-26T04:36:52.860384",
+  "scip_hash": "0xSC1_62049c02ab4d96bf",
+  "system_state": "SCIP_COCHAIN_PARSING_ACTIVE"
+}

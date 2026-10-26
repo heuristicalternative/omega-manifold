@@ -1,0 +1,9 @@
+{
+  "baseline": "G_Universal_Baseline v16.78",
+  "ieml_expression": "S:U:M:O.e.u.-",
+  "cern_priors_aligned": true,
+  "truth_value_frequency": 0.95,
+  "truth_value_confidence": 0.9,
+  "evaluation_hash": "0xOM16_cnars_7d8dc1a9163e4724",
+  "status": "SEMANTIC_INFERENCE_RESOLVED"
+}

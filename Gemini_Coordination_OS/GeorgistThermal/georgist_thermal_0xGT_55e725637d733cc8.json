@@ -1,0 +1,12 @@
+{
+  "baseline": "G_Universal_Baseline v16.79",
+  "coordinates": "[M18:D18:P1]",
+  "process_id": 202,
+  "base_lvt": 100.0,
+  "thermal_multiplier_pi": 3.0,
+  "total_lvt_due": 300.0,
+  "penalty_surcharge_recycled": 200.0,
+  "timestamp": "2026-10-26T05:44:46.228265",
+  "gt_hash": "0xGT_55e725637d733cc8",
+  "system_state": "GEORGIST_THERMAL_ENGINE_ACTIVE"
+}
