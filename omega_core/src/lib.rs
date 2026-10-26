@@ -4,6 +4,11 @@ pub mod gemini_bridge;
 pub mod p2p_mesh;
 pub mod hmmf_vault;
 pub mod micro_agent;
+pub mod wasm_runtime;
+pub mod master_runtime;
+pub mod sheaf_mesh;
+pub mod docs_sync;
+pub mod p2p_discovery;
 
 pub const G_UNIVERSAL_BASELINE: &str = "G_Universal_Baseline v16.79";
 

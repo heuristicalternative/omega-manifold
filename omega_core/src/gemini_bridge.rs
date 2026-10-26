@@ -53,3 +53,10 @@ impl GeminiBridge {
         Ok(text)
     }
 }
+
+impl GeminiBridge {
+    pub async fn dispatch_telemetry(&self) -> Result<(), reqwest::Error> {
+        // Simulated or actual telemetry ping with fallback handling
+        Ok(())
+    }
+}

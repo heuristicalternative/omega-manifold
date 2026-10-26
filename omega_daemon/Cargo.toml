@@ -5,3 +5,7 @@ edition = "2021"
 
 [dependencies]
 omega_core = { path = "../omega_core" }
+
+[dependencies.tokio]
+version = "1.0"
+features = ["full"]
