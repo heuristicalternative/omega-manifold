@@ -58,3 +58,9 @@ impl SelfHealingProtocol {
         Ok(())
     }
 }
+
+impl SelfHealingProtocol {
+    pub fn trigger_autonomous_fallback(&self, level: i32) {
+        println!("[Self-Healing] Triggering autonomous fallback level {}...", level);
+    }
+}

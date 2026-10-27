@@ -1,12 +1,11 @@
-// AST Hex Coordinate: 0xOM-P2P-MESH-GOSSIP-0xRUST-0x9F41
-use std::io::{Read, Write};
-use std::net::{TcpStream, TcpListener};
-use std::thread;
-use std::time::Duration;
+use std::sync::Arc;
+use tokio::net::TcpListener;
+use tokio::sync::Mutex;
 
 pub struct P2PMeshNode {
     pub bind_addr: String,
     pub baseline_version: String,
+    pub peers: Arc<Mutex<Vec<String>>>,
 }
 
 impl P2PMeshNode {
@@ -14,50 +13,31 @@ impl P2PMeshNode {
         Self {
             bind_addr: bind_addr.to_string(),
             baseline_version: baseline_version.to_string(),
+            peers: Arc::new(Mutex::new(Vec::new())),
         }
     }
 
-    pub fn start_listener(&self) {
-        let addr = self.bind_addr.clone();
-        let baseline = self.baseline_version.clone();
+    pub async fn start_listener(&self) -> Result<(), Box<dyn std::error::Error>> {
+        let listener = TcpListener::bind(&self.bind_addr).await?;
+        println!("[P2P Mesh] TCP listener active on {}", self.bind_addr);
         
-        thread::spawn(move || {
-            let listener = TcpListener::bind(&addr).expect("Failed to bind P2P mesh listener");
-            println!("[P2P_MESH] Coordination node active and gossiping on {} (AST 0x9F41)", addr);
-            
-            for stream in listener.incoming() {
-                match stream {
-                    Ok(mut socket) => {
-                        let baseline_clone = baseline.clone();
-                        thread::spawn(move || {
-                            let _ = socket.set_read_timeout(Some(Duration::from_secs(2)));
-                            let mut buffer = [0; 512];
-                            if let Ok(n) = socket.read(&mut buffer) {
-                                if n > 0 {
-                                    println!("[P2P_MESH] Inbound peer telemetry sync frame received.");
-                                }
-                            }
-                            let response = format!("{{\"node\": \"Melusine\", \"baseline\": \"{}\", \"mesh_status\": \"active_gossip\"}}\n", baseline_clone);
-                            let _ = socket.write_all(response.as_bytes());
-                        });
-                    }
-                    Err(e) => {
-                        eprintln!("[P2P_MESH] Peer stream error: {}", e);
-                        break;
-                    }
-                }
+        let peers = Arc::clone(&self.peers);
+        tokio::spawn(async move {
+            while let Ok((_stream, addr)) = listener.accept().await {
+                println!("[P2P Mesh] Accepted incoming connection from {}", addr);
+                let mut p = peers.lock().await;
+                p.push(addr.to_string());
             }
         });
+        
+        Ok(())
     }
 
-    pub fn broadcast_telemetry(&self, peer_addr: &str) {
-        println!("[P2P_MESH] Broadcasting gossip telemetry frame to peer at {}...", peer_addr);
-        if let Ok(mut stream) = TcpStream::connect_timeout(&peer_addr.parse().unwrap(), Duration::from_secs(1)) {
-            let payload = format!("OMEGA_GOSSIP_SYNC:{}@Melusine\n", self.baseline_version);
-            let _ = stream.write_all(payload.as_bytes());
-            println!("[P2P_MESH] Successfully broadcast telemetry to peer node.");
-        } else {
-            println!("[P2P_MESH] Peer at {} unreachable (standby mesh topology verified).", peer_addr);
-        }
+    pub fn connect_peer(&mut self, addr: &str) {
+        println!("[P2P Mesh] Connecting to peer at {}...", addr);
+    }
+
+    pub fn broadcast_gossip_frame(&self, frame: &str) {
+        println!("[P2P Mesh] Broadcasting gossip frame: {}", frame);
     }
 }
