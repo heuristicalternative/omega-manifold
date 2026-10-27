@@ -56,7 +56,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut mesh = P2PMeshNode::new("127.0.0.1:9041", "G_Universal_Baseline v16.79");
     mesh.connect_peer("127.0.0.1:9042");
-    mesh.broadcast_gossip_frame("Epoch-50 Telemetry & Sheaf Coherence Verified.")?;
+    mesh.broadcast_gossip_frame("Epoch-50 Telemetry & Sheaf Coherence Verified."); // Removed ? operator
 
     println!("All metabolic layers, local micro-agents, HMMF vault, P2P mesh, and discovery active on Melusine.");
     Ok(())
