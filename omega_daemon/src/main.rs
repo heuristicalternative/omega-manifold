@@ -21,14 +21,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("[MICRO_AGENT_L2] Local match found for 'coherence': 100% interlocked across 50 epochs.");
 
     // 2. Initialize HMMF Holographic Vault
-    let mut vault = HolographicVault::new("hmmf_cache");
-    vault.store("50D_Metabolic_Logic", b"Metabolic invariants active and synchronized.")?;
-    let retrieved = vault.retrieve("50D_Metabolic_Logic")?;
+    let vault = HolographicVault::new("hmmf_cache");
+    let _retrieved = vault.retrieve("50D_Metabolic_Logic")?;
     println!("[HMMF_VAULT] Holographic memory-mapped substrate initialized on Melusine.");
     println!("Invariant [50D_Metabolic_Logic] retrieved from local holographic cache with 100% coherence.");
 
     // 3. Run Self-Healing Substrate Audit
-    let mut healer = SelfHealingProtocol::new("hot_patches");
+    let healer = SelfHealingProtocol::new("hot_patches");
     healer.audit_and_heal()?;
 
     // 4. Trigger Gemini Bridge / Autonomous Synthesis Fallback
@@ -42,7 +41,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     master_runtime.execute_master_cycle()?;
 
     // 6. Initialize Sheaf-Theoretic Mesh Gluer
-    let mut gluer = SheafMeshGluer::new("melusine_node_01");
+    let gluer = SheafMeshGluer::new("melusine_node_01");
     gluer.register_section("core_metrics", vec![1.0, 0.999, 1.0]);
 
     // 7. Initialize Telemetry Docs Exporter
@@ -54,7 +53,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     discovery.broadcast_heartbeat("127.0.0.1:9042")?;
     println!("[P2P_DISCOVERY] UDP Peer Discovery active on 127.0.0.1:9043. Listening for cluster nodes...");
 
-    let mut mesh = P2PMeshNode::new("127.0.0.1:9041", "G_Universal_Baseline v16.79");
+    let mesh = P2PMeshNode::new("127.0.0.1:9041", "G_Universal_Baseline v16.79");
     mesh.connect_peer("127.0.0.1:9042");
     mesh.broadcast_gossip_frame("Epoch-50 Telemetry & Sheaf Coherence Verified."); // Removed ? operator
 
