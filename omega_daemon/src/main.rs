@@ -41,7 +41,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     master_runtime.execute_master_cycle()?;
 
     // 6. Initialize Sheaf-Theoretic Mesh Gluer
-    let gluer = SheafMeshGluer::new("melusine_node_01");
+    let mut gluer = SheafMeshGluer::new("melusine_node_01");
     gluer.register_section("core_metrics", vec![1.0, 0.999, 1.0]);
 
     // 7. Initialize Telemetry Docs Exporter
@@ -53,7 +53,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     discovery.broadcast_heartbeat("127.0.0.1:9042")?;
     println!("[P2P_DISCOVERY] UDP Peer Discovery active on 127.0.0.1:9043. Listening for cluster nodes...");
 
-    let mesh = P2PMeshNode::new("127.0.0.1:9041", "G_Universal_Baseline v16.79");
+    let mut mesh = P2PMeshNode::new("127.0.0.1:9041", "G_Universal_Baseline v16.79");
     mesh.connect_peer("127.0.0.1:9042");
     mesh.broadcast_gossip_frame("Epoch-50 Telemetry & Sheaf Coherence Verified."); // Removed ? operator
 
