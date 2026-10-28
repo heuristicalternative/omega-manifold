@@ -156,6 +156,27 @@ impl ManifoldSnapshot {
     }
 }
 
+pub fn index_snapshot(
+    snapshot: &ManifoldSnapshot,
+    adapter: &mut crate::qdrant_adapter::OmegaQdrantAdapter,
+) {
+    let payload = crate::qdrant_adapter::OmegaStatePayload {
+        point_id: format!("epoch-{}", snapshot.epoch),
+        dimension: snapshot.tensor_state.len(),
+        baseline_status: "G_Universal_Baseline".to_string(),
+        ast_hex: crate::qdrant_adapter::AstHexCoordinate {
+            x: 0,
+            y: 0,
+            z: 0,
+            node_id: "melusine_node_01".to_string(),
+            symbol_path: snapshot.ast_hex_address.clone(),
+        },
+        logic_set_tags: vec!["omega".to_string(), "state_sync".to_string()],
+        timestamp: snapshot.epoch,
+    };
+    let _ = adapter.store_state_point(payload);
+}
+
 pub fn validate_zk_proofs(
     proofs: &[crate::zero_knowledge::Groth16Proof],
 ) -> Result<bool, std::io::Error> {

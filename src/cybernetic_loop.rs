@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 
+use crate::shm_bridge::ShmBridge;
+
 // Multi-tier cybernetic feedback loop coordinator (AST Hex: 0xOM16-0x0003-0xMETA).
 
 #[allow(dead_code)]
@@ -11,6 +13,7 @@ pub struct CyberneticCoordinator {
     pub entropy: f64,
     pub tensor_adjustment: f64,
     pub obstruction_threshold: f64,
+    pub shm_bridge: ShmBridge,
 }
 
 impl CyberneticCoordinator {
@@ -22,6 +25,7 @@ impl CyberneticCoordinator {
             entropy: 0.0,
             tensor_adjustment: 0.0,
             obstruction_threshold: 0.5,
+            shm_bridge: ShmBridge::new(64),
         }
     }
 
@@ -86,6 +90,18 @@ impl CyberneticCoordinator {
 
     pub fn zero_entropy_invariant(&self) -> bool {
         self.entropy.abs() < 1e-9
+    }
+
+    pub fn checkpoint(&mut self, filepath: &str) -> Result<usize, String> {
+        // Flush current first-order metrics into the SHM bridge, then persist.
+        let bytes: Vec<u8> = self
+            .first_order_metrics
+            .iter()
+            .flat_map(|v| v.to_le_bytes())
+            .collect();
+        self.shm_bridge.segments.clear();
+        self.shm_bridge.add_segment(bytes)?;
+        self.shm_bridge.flush_vram_traces(filepath)
     }
 }
 

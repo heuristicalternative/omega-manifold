@@ -1,0 +1,8 @@
+{
+  "baseline": "G_Universal_Baseline",
+  "ast_hex": "0xASTx702",
+  "metric_tensors": [1.00000000000000000, 2.00000000000000000, 3.00000000000000000, 4.00000000000000000],
+  "ast_coords": [[1,2,3], [4,5,6]],
+  "fingerprints": ["fp-omega-001"],
+  "checksum": "15c76787499c178f7e42a70850e14207d35fcb128dae7c5c01194e4bd05c8088"
+}
