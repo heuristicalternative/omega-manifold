@@ -29,11 +29,11 @@ fi
 
 # Initialize the Radicle project if not already initialized.
 if [ ! -d "$REPO_ROOT/.radicle" ]; then
-  rad init --name "omega-manifold" --description "Omega Manifold sovereign code forge" --default-branch main --scope shared || true
+  rad init --name "omega-manifold" --description "Omega Manifold sovereign code forge" --default-branch main --scope all || true
 fi
 
 # Propagate patches across local and remote seed nodes.
-rad push || true
-rad sync --lock || true
+git push rad main || true
+rad sync || true
 
 echo "[SYNC] Radicle synchronization routine complete."
