@@ -59,6 +59,15 @@ impl ManifoldSnapshot {
         self.checksum == self.compute_checksum()
     }
 
+    pub fn verify_zk_proofs(
+        &self,
+        proofs: &[crate::zero_knowledge::Groth16Proof],
+    ) -> Result<bool, std::io::Error> {
+        crate::zero_knowledge::Groth16Verifier::new()
+            .verify_batched_proofs(proofs)
+            .map_err(|e| std::io::Error::new(std::io::ErrorKind::InvalidData, e))
+    }
+
     pub fn export_snapshot(&self, path: &str) -> Result<(), io::Error> {
         let mut file = fs::File::create(path)?;
         writeln!(file, "epoch={}", self.epoch)?;
@@ -145,6 +154,14 @@ impl ManifoldSnapshot {
 
         Ok(snapshot)
     }
+}
+
+pub fn validate_zk_proofs(
+    proofs: &[crate::zero_knowledge::Groth16Proof],
+) -> Result<bool, std::io::Error> {
+    crate::zero_knowledge::Groth16Verifier::new()
+        .verify_batched_proofs(proofs)
+        .map_err(|e| std::io::Error::new(std::io::ErrorKind::InvalidData, e))
 }
 
 #[cfg(test)]

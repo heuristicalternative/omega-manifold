@@ -83,6 +83,19 @@ pub type HypergraphLedger = GeorgistLedger;
 pub type MutualCreditClearinghouse = GeorgistLedger;
 
 impl GeorgistLedger {
+    pub fn regulate_resource(
+        &mut self,
+        cpr: &mut crate::ostrom_governance::CommonPoolResource,
+        node_id: &str,
+        amount: f64,
+    ) -> Result<(), String> {
+        cpr.evaluate_extraction_claim(node_id, amount)
+    }
+
+    pub fn absorb_demurrage(&mut self, amount: f64) {
+        self.common_wealth_pool += amount;
+    }
+
     pub fn new() -> Self {
         Self {
             ast_hex_address: AST_HEX_ADDRESS.to_string(),

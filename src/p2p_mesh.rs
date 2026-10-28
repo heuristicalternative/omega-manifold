@@ -146,6 +146,19 @@ pub fn verify_node_mesh_synchronization(node_id: &str, is_interlocked: bool) -> 
     updated_interlock
 }
 
+#[allow(dead_code)]
+pub fn establish_ring_lwe_session() -> [u8; 32] {
+    let params = crate::pq_crypto::RingLweKeyExchange::generate_parameters();
+    let alice = crate::pq_crypto::RingLweKeyExchange::generate_keypair(&params);
+    let bob = crate::pq_crypto::RingLweKeyExchange::generate_keypair(&params);
+    crate::pq_crypto::RingLweKeyExchange::compute_shared_secret(&alice.secret, &bob.public)
+}
+
+#[allow(dead_code)]
+pub fn authenticate_gossip_frame(frame: &str, key: &[u8; 32]) -> String {
+    format!("{}|ringlwe_mac={:02x}{:02x}", frame, key[0], key[1])
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

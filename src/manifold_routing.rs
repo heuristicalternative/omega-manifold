@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 // Stigmergic event bus and dynamic manifold routing engine for Omega Manifold.
 
 #[allow(dead_code)]
@@ -32,6 +34,8 @@ impl ManifoldSignal {
             && self.source_coords.len() == self.tensor_payload.len()
     }
 }
+
+use crate::profunctor_optic::ProfunctorOptic;
 
 #[allow(dead_code)]
 #[derive(Debug, Default)]
@@ -74,8 +78,14 @@ impl StigmergicRouter {
         }
     }
 
+    pub fn transform_signal(&self, signal: &mut ManifoldSignal) {
+        let optic = ProfunctorOptic::new("router_boundary");
+        signal.tensor_payload = optic.transform_tensor(&signal.tensor_payload);
+    }
+
     pub fn dispatch_next(&mut self) -> Option<RouteDecision> {
-        let signal = self.queue.pop()?;
+        let mut signal = self.queue.pop()?;
+        self.transform_signal(&mut signal);
         let decision = self.route(&signal);
         self.dispatched.push(decision.clone());
         Some(decision)
@@ -88,6 +98,12 @@ impl StigmergicRouter {
         }
         decisions
     }
+}
+
+pub fn apply_memento_compression(signal: &ManifoldSignal) -> Result<Vec<u8>, String> {
+    let cache = crate::memento_cache::MementoCache::new(4);
+    let input: Vec<f32> = signal.tensor_payload.iter().map(|v| *v as f32).collect();
+    cache.compress_context(&input, 4)
 }
 
 #[cfg(test)]
