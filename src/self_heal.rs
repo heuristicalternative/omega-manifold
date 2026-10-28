@@ -1,5 +1,6 @@
 use std::process::Command;
 
+#[allow(dead_code)]
 #[derive(Debug)]
 pub struct CompilerDiagnostic {
     pub file: String,

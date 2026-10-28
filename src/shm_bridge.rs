@@ -1,6 +1,6 @@
 use std::ffi::CString;
 use std::ptr;
-use libc::{shm_open, mmap, munmap, O_RDONLY, PROT_READ, MAP_SHARED};
+use libc::{shm_open, mmap, munmap, close, O_RDONLY, PROT_READ, MAP_SHARED, MAP_FAILED};
 
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
@@ -12,6 +12,7 @@ pub struct ShmTelemetryRaw {
     pub is_mesh_interlocked: bool,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct ShmTelemetry {
     pub sequence_epoch: u64,
@@ -25,7 +26,7 @@ pub fn read_horizon116_shm() -> Result<ShmTelemetry, String> {
     let shm_name = CString::new("/omega_shm_ring_horizon116").unwrap();
     
     unsafe {
-        let fd = shm_open(shm_name.as_ptr(), O_RDONLY, 0666);
+        let fd = shm_open(shm_name.as_ptr(), O_RDONLY, 0o666);
         if fd == -1 {
             return Err("Failed to open /dev/shm segment. Run horizon116_bridge first.".to_string());
         }
@@ -39,7 +40,7 @@ pub fn read_horizon116_shm() -> Result<ShmTelemetry, String> {
             0,
         );
 
-        if ptr == libc::MAP_FAILED {
+        if ptr == MAP_FAILED {
             return Err("Failed to map shared memory segment.".to_string());
         }
 
@@ -47,7 +48,7 @@ pub fn read_horizon116_shm() -> Result<ShmTelemetry, String> {
         let raw = ptr::read_unaligned(ptr as *const ShmTelemetryRaw);
         
         munmap(ptr, std::mem::size_of::<ShmTelemetryRaw>());
-        libc::close(fd);
+        close(fd);
 
         // Map into standard aligned struct for safe downstream usage
         Ok(ShmTelemetry {
