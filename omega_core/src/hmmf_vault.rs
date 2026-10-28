@@ -36,7 +36,7 @@ impl HolographicVault {
 }
 
 impl HolographicVault {
-    pub fn store(&self, key: &str, data: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn store(&self, key: &str, _data: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
         println!("[HolographicVault] Storing key: {}", key);
         Ok(())
     }

@@ -1,6 +1,5 @@
 // AST Hex Coordinate: 0xDOCS-SYNC-TELEMETRY-0x9F41
 use std::fs;
-use std::path::Path;
 
 pub struct DocsSyncExporter {
     export_dir: String,
