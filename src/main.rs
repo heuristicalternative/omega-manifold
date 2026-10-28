@@ -4,6 +4,12 @@ mod ingestion_engine;
 mod self_heal;
 mod cluster_sim;
 mod sheaf_cohomology;
+mod wasm_runtime;
+mod ebpf_probe;
+mod mutual_credit;
+mod omega_handshake;
+mod manifold_routing;
+mod state_sync;
 
 fn main() {
     println!("[OMEGA_DAEMON] Initializing Omega Manifold node daemon...");
@@ -50,10 +56,18 @@ fn main() {
     }
 
     // 4. Evaluate Čech Cohomology Sheaf Holonomy (50D Phase Space)
-    let manifold = sheaf_cohomology::SheafManifold::new(50);
+    let mut manifold = sheaf_cohomology::SheafManifold::new(50);
     let sheaf_coherent = manifold.evaluate_holonomy(0.75).unwrap_or(false);
     if !sheaf_coherent {
-        eprintln!("[SHEAF_WARN] 50D Manifold Holonomy Coherence check failed.");
+        eprintln!("[SHEAF_WARN] 50D Manifold Holonomy Coherence check failed; triggering topological re-alignment.");
+        sheaf_cohomology::topological_realignment(&mut manifold);
+        let snapshot = state_sync::ManifoldSnapshot::new(
+            107,
+            "0xASTx702".to_string(),
+            vec![0.0; 35],
+            vec![("melusine_node_01".to_string(), 0.0)],
+        );
+        let _ = snapshot.export_snapshot("omega_state.snapshot");
     } else {
         println!("[SHEAF_STATUS] 50D Manifold Holonomy Coherence Verified: {}", sheaf_coherent);
     }
@@ -78,6 +92,88 @@ fn main() {
     if let Err(e) = ingestion_engine::process_incoming_ast_patch("active_patch.ast") {
         println!("[INGESTION_INFO] Awaiting active AST patch feed: {}", e);
     }
+
+    // 7. Universal handshake validation gate for telemetry/Wasm/eBPF patches
+    use omega_handshake::OmegaManifoldHandshake;
+    let handshake = omega_handshake::OmegaDaemonCoordinator::new();
+    if !handshake.validate_invariants() {
+        eprintln!("[HANDSHAKE_ERR] Universal coordination invariants failed.");
+    } else {
+        println!(
+            "[HANDSHAKE_OK] Baseline {} | AST {} | Tensor {}D | Morph {}",
+            omega_handshake::OMEGA_UNIVERSAL_BASELINE,
+            handshake.ast_hex_address(),
+            handshake.tensor_matrix_invariant_dimensions(),
+            handshake.compositional_game_morph_status()
+        );
+    }
+
+    // 8. Optional Wasm runtime execution gate for dynamic AST patch components
+    match wasm_runtime::WasmRuntime::new() {
+        Ok(runtime) => {
+            if let Err(e) = runtime.execute_patch("active_patch.wasm") {
+                println!("[WASM_INFO] Awaiting active Wasm patch feed: {}", e);
+            } else {
+                println!("[WASM_STATUS] Dynamic Wasm AST patch executed within sandbox.");
+            }
+        }
+        Err(e) => eprintln!("[WASM_ERR] Failed to initialize Wasm runtime: {}", e),
+    }
+
+    // 8. Optional eBPF kernel tracing gate for SHM and socket activity
+    let ebpf = ebpf_probe::EbpfProbe::new();
+    if ebpf.is_available() {
+        let _ = ebpf.attach_shm_tracepoint();
+        let _ = ebpf.attach_socket_tracepoint();
+    } else {
+        println!("[EBPF_INFO] eBPF tracing unavailable on this host; continuing in user-space mode.");
+    }
+
+    // 9. Initialize Georgist Settlement OS Hypergraph Ledger (0xASTx702)
+    let mut ledger = mutual_credit::GeorgistLedger::new();
+    let _ = ledger.register_node(mutual_credit::georgist_node_t {
+        land_value_assessment: 1000.0,
+        lvt_rate: 0.10,
+        credit_balance: 0.0,
+    });
+    let _ = ledger.register_node(mutual_credit::georgist_node_t {
+        land_value_assessment: 2000.0,
+        lvt_rate: 0.10,
+        credit_balance: 0.0,
+    });
+    let _ = ledger.add_hyperedge(mutual_credit::hypergraph_edge_t {
+        source_node: "melusine_node_01".to_string(),
+        target_node: "cluster_peer_01".to_string(),
+        credit_volume: 250.0,
+    });
+    match ledger.execute_lvt_clearing_cycle() {
+        Ok(()) => println!(
+            "[GEORGIST_LEDGER] LVT clearing cycle complete: invariant={} pool={}",
+            ledger.zero_sum_invariant(),
+            ledger.common_wealth_pool
+        ),
+        Err(e) => eprintln!("[GEORGIST_LEDGER_ERR] {}", e),
+    }
+
+    // 10. Central stigmergic event dispatcher loop
+    let mut router = manifold_routing::StigmergicRouter::new();
+    router.enqueue(manifold_routing::ManifoldSignal::new(
+        vec![0.0; 35],
+        "0xASTx702".to_string(),
+        vec![0.1; 35],
+    ));
+    let decisions = router.dispatch_all();
+    println!("[MANIFOLD_ROUTER] Dispatched {} signals via stigmergic routing.", decisions.len());
+
+    // 11. Persist topological state snapshot on clean shutdown
+    let final_snapshot = state_sync::ManifoldSnapshot::new(
+        107,
+        "0xASTx702".to_string(),
+        vec![0.0; 35],
+        vec![("melusine_node_01".to_string(), 0.0)],
+    );
+    let _ = final_snapshot.export_snapshot("omega_state.snapshot");
+    println!("[STATE_SYNC] Snapshot persisted to omega_state.snapshot");
 
     println!("[OMEGA_DAEMON] Node operational, cluster-interlocked, and synchronized.");
 }

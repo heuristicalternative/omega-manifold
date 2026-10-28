@@ -5,3 +5,5 @@ edition = "2021"
 
 [dependencies]
 libc = "0.2"
+wasmtime = "25.0"
+sha2 = "0.10"
