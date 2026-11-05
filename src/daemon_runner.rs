@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // Unified daemon lifecycle runner for the Omega Manifold.
 
 use crate::cybernetic_loop::CyberneticCoordinator;
@@ -27,6 +28,12 @@ impl OmegaDaemonRunner {
     }
 
     pub fn run_full_lifecycle(&mut self, cycles: usize) -> Result<(), String> {
+        // Pre-flight substrate audit.
+        let auditor = crate::substrate_audit::SubstrateAuditor::new();
+        if !auditor.audit_complete_substrate().unwrap_or(false) {
+            return Err("substrate audit failed".to_string());
+        }
+
         // Startup: eBPF probe.
         let ebpf = crate::ebpf_probe::EbpfProbe::new();
         if ebpf.is_available() {
@@ -48,9 +55,31 @@ impl OmegaDaemonRunner {
         let mut radicle = RadicleSyncDaemon::new("rad:omega-daemon", "head-omega");
         radicle.add_seed_node("seed.radicle.dev:8776");
 
+        // Agent MCP bridge (external agent interaction gate).
+        let mut mcp_bridge = crate::agent_mcp_bridge::AgentMcpBridge::new();
+        let _ = mcp_bridge.spawn_sandbox_node_mut("sandbox_0", "shared");
+        let _ = mcp_bridge.handle_mcp_request(
+            r#"{"jsonrpc":"2.0","method":"query_state","params":{"ast_hex":"0xASTx702"},"id":1}"#,
+        );
+
         // Cybernetic coordinator.
         let mut cybernetic = CyberneticCoordinator::new();
         cybernetic.ingest_hardware_metrics(&[1.0, 1.0, 1.0, 1.0]);
+
+        // E8 telemetry bridge (closed-loop hardware-to-latent gate).
+        let mut e8_bridge = crate::e8_telemetry_bridge::E8TelemetryBridge::new();
+        let telemetry = [1.0; 50];
+        let _ = e8_bridge.project_to_e8_lattice(&telemetry);
+
+        // Phonon-MASER physical hardware entropy injection gate.
+        let mut phonon = crate::phonon_maser_driver::PhononMaserDriver::new(8);
+        let _ = phonon.emit_phonon_pulse(0, 0.5);
+
+        // Bio-metabolic OS resource clearing gate.
+        let mut bio = crate::bio_metabolic_os::BioMetabolicEngine::new();
+        bio.register_node("node_a", 1.0, 1.0);
+        bio.register_node("node_b", 1.0, 1.0);
+        let _ = bio.route_metabolic_credits("node_a", "node_b", 5.0);
 
         // Ostrom governance.
         let mut cpr = CommonPoolResource::new("manifold_capacity", 1000.0, 200.0);

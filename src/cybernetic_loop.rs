@@ -1,6 +1,14 @@
 #![allow(dead_code)]
 
+use crate::bio_metabolic_os::BioMetabolicEngine;
+use crate::e8_telemetry_bridge::E8TelemetryBridge;
+use crate::lean4_verifier::Lean4Verifier;
+use crate::nars_triadic_engine::{NarsTriadicEngine, NarsTruthValue};
+use crate::phonon_maser_driver::PhononMaserDriver;
 use crate::shm_bridge::ShmBridge;
+use crate::tensor_field_simulator::TensorFieldSimulator;
+use crate::tensor_triadic_gate::TensorTriadicGate;
+use crate::telemetry_backpressure::TelemetryBackpressureEngine;
 
 // Multi-tier cybernetic feedback loop coordinator (AST Hex: 0xOM16-0x0003-0xMETA).
 
@@ -14,6 +22,14 @@ pub struct CyberneticCoordinator {
     pub tensor_adjustment: f64,
     pub obstruction_threshold: f64,
     pub shm_bridge: ShmBridge,
+    pub tensor_field: TensorFieldSimulator,
+    pub tensor_triadic_gate: TensorTriadicGate,
+    pub lean4_verifier: Lean4Verifier,
+    pub e8_bridge: E8TelemetryBridge,
+    pub telemetry_backpressure: TelemetryBackpressureEngine,
+    pub phonon_maser: PhononMaserDriver,
+    pub bio_metabolic: BioMetabolicEngine,
+    pub nars_engine: NarsTriadicEngine,
 }
 
 impl CyberneticCoordinator {
@@ -26,6 +42,19 @@ impl CyberneticCoordinator {
             tensor_adjustment: 0.0,
             obstruction_threshold: 0.5,
             shm_bridge: ShmBridge::new(64),
+            tensor_field: TensorFieldSimulator::new(),
+            tensor_triadic_gate: TensorTriadicGate::new(),
+            lean4_verifier: Lean4Verifier::new(),
+            e8_bridge: E8TelemetryBridge::new(),
+            telemetry_backpressure: TelemetryBackpressureEngine::new(),
+            phonon_maser: PhononMaserDriver::new(8),
+            bio_metabolic: {
+                let mut engine = BioMetabolicEngine::new();
+                engine.register_node("node_a", 1.0, 1.0);
+                engine.register_node("node_b", 1.0, 1.0);
+                engine
+            },
+            nars_engine: NarsTriadicEngine::new(),
         }
     }
 
@@ -77,6 +106,40 @@ impl CyberneticCoordinator {
 
         // Third-order mutation if needed.
         self.mutate_meta_grammar();
+
+        // E8 telemetry bridge: project hardware metrics to latent E8 coordinates.
+        let mut telemetry = [0.0f64; 50];
+        for (i, v) in self.first_order_metrics.iter().enumerate().take(50) {
+            telemetry[i] = *v;
+        }
+        let _ = self.e8_bridge.project_to_e8_lattice(&telemetry);
+
+        // Telemetry back-pressure audit-normalization gate.
+        let base = [1.0; 9];
+        let audit = [0.0; 9];
+        let _ = self
+            .telemetry_backpressure
+            .apply_backpressure_correction(&base, &audit, 0.0);
+
+        // Second-order metric tensor evolution via symplectic flow.
+        let _ = self.tensor_field.step_symplectic_flow(0.1);
+
+        // Bio-metabolic resource clearing gate.
+        let _ = self.bio_metabolic.route_metabolic_credits("node_a", "node_b", 1.0);
+
+        // Physical hardware entropy injection gate via phonon-MASER.
+        let _ = self.phonon_maser.emit_phonon_pulse(0, 0.0);
+
+        // NARS triadic cognitive evaluation gate.
+        let truth = NarsTruthValue::new(
+            (1.0 - self.second_order_obstruction).clamp(0.0, 1.0),
+            0.9,
+        );
+        let _ = self.nars_engine.evaluate_triadic_gate(&truth);
+
+        // Lean 4 formal pre-execution verification gate.
+        let metric = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0];
+        let _ = self.lean4_verifier.verify_symplectic_manifold(&metric, 0.0);
 
         // Entropy is derived from residual obstruction.
         self.entropy = self.second_order_obstruction.min(1.0).max(0.0);

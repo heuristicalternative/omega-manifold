@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // Lightweight eBPF availability and tracing gate for the Omega Manifold daemon.
 //
 // Full kernel-level probe attachment requires libbpf/aya and CAP_BPF. This

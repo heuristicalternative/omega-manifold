@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // Omega Manifold P2P Gossip Mesh & Mesh Interlocking Telemetry Verification
 //
 // The listener runs on a background thread (asynchronous with respect to the

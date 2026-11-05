@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // TypeGPU-inspired WebGPU storage buffer primitives for VRAM stigmergic trace updates.
 //
 // This module models a GPU storage buffer on the CPU so the daemon can exercise

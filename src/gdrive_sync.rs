@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // Automated Google Drive AST hex extractor and sheaf cohomology audit pipeline.
 
 use regex::Regex;

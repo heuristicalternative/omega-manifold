@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use std::ffi::CString;
 use std::ptr;
 use libc::{shm_open, mmap, munmap, O_CREAT, O_RDWR, PROT_READ, PROT_WRITE, MAP_SHARED};

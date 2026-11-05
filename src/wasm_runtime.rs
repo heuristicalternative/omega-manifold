@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // Wasmtime-backed sandbox for dynamic WebAssembly AST patch components.
 
 use std::fs;

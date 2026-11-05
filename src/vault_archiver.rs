@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // Vault archiver for complete Omega Manifold session state.
 
 use sha2::{Digest, Sha256};

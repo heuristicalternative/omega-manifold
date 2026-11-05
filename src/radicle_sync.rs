@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // Radicle peer-to-peer patch propagation and seed node synchronization.
 
 use std::collections::HashMap;

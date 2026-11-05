@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // C23 Cold Substrate Re-hydration Loader interface (AST Hex: 0x434F4C445F524548594452415445).
 
 use std::os::raw::{c_char, c_int, c_void};
