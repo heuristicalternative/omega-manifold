@@ -106,7 +106,7 @@ mod tests {
         // Decode count.
         let mut idx = 4 + u32::from_le_bytes(compressed[0..4].try_into().unwrap()) as usize;
         let count = u32::from_le_bytes(compressed[idx..idx + 4].try_into().unwrap()) as usize;
-        idx += 4;
+        _ = idx; idx += 4;
         assert!(count <= 4);
         assert_eq!(count, 4);
     }
