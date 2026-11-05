@@ -23,7 +23,7 @@ fn test_radicle_mesh_propagation() {
     assert_eq!(frame_b.node_id, "Remote-Peer-B");
 
     // 3. Verify active inference orchestrator integration across the propagation loop
-    let mut orch = CoordinationOrchestrator::new("Melusine-Node-A");
+    let mut orch = CoordinationOrchestrator::new_simple("Melusine-Node-A");
     orch.step_active_inference(0.08);
     assert!(orch.status().contains("Melusine-Node-A"));
 

@@ -30,7 +30,7 @@ fn test_cluster_consensus_simulation() {
     // 4. Sheaf cohomology holonomy check detects incoherence under high flux.
     let mut manifold = SheafManifold::new(50);
     let incoherent = manifold.evaluate_holonomy(10000.0).unwrap_or(false);
-    assert!(!incoherent);
+    assert!(incoherent);
 
     // Execute topological re-alignment.
     assert!(topological_realignment(&mut manifold));

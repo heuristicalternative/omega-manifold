@@ -55,3 +55,5 @@ pub mod active_inference;
 pub mod gossip;
 
 pub mod gpu_compute;
+
+pub mod geometry;

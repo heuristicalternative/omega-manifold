@@ -4,7 +4,7 @@ use omega_manifold::vfs::Plan9Vfs;
 #[test]
 fn test_vfs_orchestrator_sync() {
     let mut vfs = Plan9Vfs::new("Melusine-Namespace");
-    let mut orch = CoordinationOrchestrator::new("Melusine-Node", 0);
+    let mut orch = CoordinationOrchestrator::new_with_dim("Melusine-Node", 0);
 
     // Initial check of VFS default state
     assert_eq!(vfs.read_file("/manifold/state").unwrap(), "active_inference_idle");

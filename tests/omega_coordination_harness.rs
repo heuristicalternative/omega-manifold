@@ -5,7 +5,7 @@ use omega_manifold::vector_mesh::VectorMesh;
 #[test]
 fn test_omega_coordination_harness() {
     // 1. Initialize Orchestrator with Active Inference
-    let mut orch = CoordinationOrchestrator::new("Melusine-Cluster-Master");
+    let mut orch = CoordinationOrchestrator::new_simple("Melusine-Cluster-Master");
     orch.step_active_inference(0.15);
     assert!(orch.status().contains("Melusine-Cluster-Master"));
 
