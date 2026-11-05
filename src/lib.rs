@@ -45,3 +45,5 @@ pub mod vector_mesh;
 pub mod ebpf_telemetry_bridge;
 
 pub mod vfs;
+
+pub mod negentropy;
