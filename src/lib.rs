@@ -51,3 +51,5 @@ pub mod negentropy;
 pub mod telemetry_sync;
 
 pub mod active_inference;
+
+pub mod gossip;
