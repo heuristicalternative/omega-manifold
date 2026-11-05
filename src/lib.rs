@@ -41,3 +41,7 @@ pub mod negentropy_sync;
 pub mod orchestrator;
 
 pub mod vector_mesh;
+
+pub mod ebpf_telemetry_bridge;
+
+pub mod vfs;
