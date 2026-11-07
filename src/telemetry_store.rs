@@ -1,4 +1,4 @@
-use std::fs::{OpenOptions, File};
+use std::fs::OpenOptions;
 use std::io::{Write, BufWriter, Result as IoResult};
 
 pub struct TelemetryStore {

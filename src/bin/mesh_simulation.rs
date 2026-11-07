@@ -4,9 +4,10 @@ use omega_manifold::ebpf_consumer::EbpfConsumerLoop;
 use omega_manifold::mesh_sync::MeshSyncBroadcaster;
 use omega_manifold::gossip_protocol::GossipProtocolNode;
 use omega_manifold::health_monitor::ClusterHealthMonitor;
+use omega_manifold::telemetry_store::TelemetryStore;
 
 fn main() {
-    println!("[MESH_SIM] Initializing multi-node telemetry, gossip, and health monitoring test...");
+    println!("[MESH_SIM] Initializing multi-node telemetry, gossip, health, and persistence test...");
     
     // Initialize cluster health monitor
     let mut health_monitor = ClusterHealthMonitor::new("melusine-master-node");
@@ -29,17 +30,26 @@ fn main() {
         Err(e) => eprintln!("[MESH_SIM] Failed to poll ring buffer: {}", e),
     }
 
+    // Initialize persistent telemetry store
+    let store = TelemetryStore::new("omega_telemetry.log");
+    let snapshot = aggregator.snapshot_events();
+    println!("[MESH_SIM] Telemetry snapshot acquired: {} events pending broadcast and persistence.", snapshot.len());
+    
+    for event in &snapshot {
+        println!("  -> Timestamp: {}, Hash: {}, Weight: {}", event.timestamp, event.trace_hash, event.manifold_weight);
+        let weight_f32 = event.manifold_weight as f32;
+        if let Err(e) = store.append_snapshot(event.timestamp, &event.trace_hash, weight_f32) {
+            eprintln!("[STORE] Failed to append telemetry snapshot: {}", e);
+        } else {
+            println!("[STORE] Telemetry event successfully appended to persistent log.");
+        }
+    }
+
     // Initialize Tailscale mesh broadcaster binding to 100.x.x.x subnet
     let broadcaster = MeshSyncBroadcaster::new("melusine-master-node", "100.64.0.1:9000");
     if broadcaster.verify_mesh_binding() {
         println!("[MESH_SIM] Tailscale interface binding verified on 100.x.x.x subnet.");
     }
 
-    let snapshot = aggregator.snapshot_events();
-    println!("[MESH_SIM] Telemetry snapshot acquired: {} events pending broadcast.", snapshot.len());
-    for event in snapshot {
-        println!("  -> Timestamp: {}, Hash: {}, Weight: {}", event.timestamp, event.trace_hash, event.manifold_weight);
-    }
-
-    println!("[MESH_SIM] Multi-node mesh propagation, gossip, and health test completed successfully.");
+    println!("[MESH_SIM] Multi-node mesh propagation, gossip, health, and persistence test completed successfully.");
 }
