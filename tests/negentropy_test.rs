@@ -12,5 +12,5 @@ fn test_negentropy_reconciliation() {
     let reconciled_count = node_b.reconcile(&proof_a);
 
     assert_eq!(reconciled_count, 1);
-    let expected = vec![(100, "hash_v1"), (100, "ebpf_trace_hash_beta")];
+    let _expected = vec![(100, "hash_v1"), (100, "ebpf_trace_hash_beta")];
 }
