@@ -1,3 +1,4 @@
+pub mod ebpf_consumer;
 pub mod mesh_sync;
 pub mod telemetry_aggregator;
 pub mod stigmergic_mesh;
