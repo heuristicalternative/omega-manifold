@@ -1,3 +1,4 @@
+pub mod telemetry_store;
 pub mod health_monitor;
 pub mod gossip_protocol;
 pub mod conservation_checker;
