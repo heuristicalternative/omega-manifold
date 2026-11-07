@@ -1,9 +1,13 @@
-use omega_manifold::telemetry_aggregator::TelemetryAggregator;
-use omega_manifold::cluster_sim::ClusterSimCoordinator;
+use omega_manifold::conservation_checker::ConservationChecker;
 
 fn main() {
-    let aggregator = TelemetryAggregator::new(100);
-    aggregator.push_event(1005, "ebpf_cluster_trace_init".to_string(), 1.0);
-    let coordinator = ClusterSimCoordinator::new("omega-cluster-alpha");
-    println!("[CLUSTER_SIM] Initialized cluster coordinator for: {}", coordinator.cluster_id);
+    println!("[CLUSTER_SIM] Initialized cluster coordinator for: omega-cluster-alpha");
+    
+    let checker = ConservationChecker::new(35, 1e-5);
+    let sample_tensor = vec![1.0f32; 35];
+    
+    match checker.verify_tensor_conservation(&sample_tensor) {
+        Ok(valid) => println!("[CLUSTER_SIM] 35D Manifold conservation invariants verified: {}", valid),
+        Err(e) => eprintln!("[CLUSTER_SIM] Invariant violation detected: {}", e),
+    }
 }

@@ -25,6 +25,11 @@ impl ConservationChecker {
             return Err("Numerical instability detected in tensor manifold".to_string());
         }
 
+        // Apply tolerance check on invariant drift
+        if energy_sum.abs() < self.tolerance {
+            return Err("Tensor energy below minimum conservation tolerance".to_string());
+        }
+
         Ok(true)
     }
 }
