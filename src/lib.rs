@@ -1,3 +1,4 @@
+pub mod telemetry_aggregator;
 pub mod stigmergic_mesh;
 pub mod active_inference;
 pub mod geometry;
