@@ -1,3 +1,4 @@
+pub mod gossip_protocol;
 pub mod conservation_checker;
 pub mod ebpf_consumer;
 pub mod mesh_sync;
