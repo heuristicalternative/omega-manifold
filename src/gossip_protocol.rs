@@ -27,4 +27,8 @@ impl GossipProtocolNode {
     pub fn peer_count(&self) -> usize {
         self.peers.len()
     }
+
+    pub fn node_id(&self) -> &str {
+        &self.node_id
+    }
 }

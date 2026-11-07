@@ -9,6 +9,7 @@ fn main() {
     
     // Initialize gossip protocol node
     let mut gossip_node = GossipProtocolNode::new("melusine-master-node");
+    println!("[GOSSIP] Node ID registered: {}", gossip_node.node_id());
     gossip_node.register_peer("100.64.0.2:9000");
     gossip_node.register_peer("100.64.0.3:9000");
     let current_epoch = gossip_node.increment_epoch();
