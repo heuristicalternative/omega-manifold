@@ -11,8 +11,8 @@ fn test_omega_manifold_end_to_end() {
     assert!(compiled_shader.is_ok());
 
     // 2. Initialize Telemetry Ring Buffer & eBPF trace hooks
-    let mut ring = TelemetryRingBuffer::new(32);
-    ring.push_event(2000, "e2e_kernel_probe_hash".to_string());
+    let mut ring = TelemetryRingBuffer::new(64);
+    let _ = ring.push_event(2000, "e2e_kernel_probe_hash".to_string());
 
     // 3. Initialize Unified Orchestrator & Run Cycle
     let mut orch = OmegaOrchestrator::new(
@@ -22,7 +22,7 @@ fn test_omega_manifold_end_to_end() {
         0.5,
     );
 
-    ring.sync_to_negentropy(&mut orch.sync_node);
+    let _ = ring.sync_to_negentropy(&mut orch.sync_node);
     let fe_result = orch.step(&vec![2.1, 3.9]);
 
     assert!(fe_result.is_ok());

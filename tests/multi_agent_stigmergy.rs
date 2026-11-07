@@ -28,10 +28,12 @@ fn test_multi_agent_stigmergy() {
     // 2. AgentAlpha transmits a Geodesic Grammar execution string W via shared Qdrant memory.
     let mut qdrant = OmegaQdrantAdapter::new("shared_stigmergy");
     let payload = OmegaStatePayload {
+        data: "omega-state-payload-data".to_string(),
         point_id: "alpha-trace".to_string(),
         dimension: 35,
         baseline_status: "G_Universal_Baseline".to_string(),
         ast_hex: AstHexCoordinate {
+        coordinate: "omega-ast-hex-coordinate".to_string(),
             x: 0,
             y: 0,
             z: 0,
@@ -57,7 +59,7 @@ fn test_multi_agent_stigmergy() {
 
     // Execute metric tensor transformation without drift.
     let optic = ProfunctorOptic::new("agent_boundary");
-    let tensor = vec![0.2, 1.3, 2.7, 0.5];
+    let tensor = vec![1.0; 35];
     let transformed = optic.transform_tensor(&tensor);
     assert_eq!(transformed.len(), tensor.len());
     for v in &transformed {

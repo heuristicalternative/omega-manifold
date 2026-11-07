@@ -58,7 +58,7 @@ impl OmegaOrchestrator {
         }];
         self.verifier.verify_sections(&sections)?;
         
-        self.sync_node.insert_entry(100, fe.to_string());
+        let _ = self.sync_node.insert_entry(100, fe.to_string());
         Ok(fe)
     }
 

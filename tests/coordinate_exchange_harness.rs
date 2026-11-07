@@ -1,4 +1,4 @@
-use omega_manifold::omega_handshake::{OMEGA_UNIVERSAL_BASELINE, OmegaDaemonCoordinator, OmegaManifoldHandshake};
+use omega_manifold::omega_handshake::{OMEGA_UNIVERSAL_BASELINE, OmegaDaemonCoordinator};
 use omega_manifold::state_sync::ManifoldSnapshot;
 use omega_manifold::zero_knowledge::{Groth16Proof, Groth16Verifier};
 use std::fs;

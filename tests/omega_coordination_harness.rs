@@ -5,9 +5,9 @@ use omega_manifold::vector_mesh::VectorMesh;
 #[test]
 fn test_omega_coordination_harness() {
     // 1. Initialize Orchestrator with Active Inference
-    let mut orch = CoordinationOrchestrator::new_simple("Melusine-Cluster-Master");
+    let mut orch = CoordinationOrchestrator::new_simple("test_sync_manifest.db");
     orch.step_active_inference(0.15);
-    assert!(orch.status().contains("Melusine-Cluster-Master"));
+    assert!(orch.status().contains("test_sync_manifest.db"));
 
     // 2. Initialize Negentropy Sync Node with temporary SQLite db
     let db_path = "test_sync_manifest.db";
@@ -15,8 +15,8 @@ fn test_omega_coordination_harness() {
     let sync_node = NegentropySyncNode::new(db_path);
     assert!(sync_node.initialize_store().is_ok());
 
-    let frame = sync_node.generate_sync_frame("Melusine-Cluster-Master").unwrap();
-    assert_eq!(frame.node_id, "Melusine-Cluster-Master");
+    let frame = sync_node.generate_sync_frame("test_sync_manifest.db").unwrap();
+    assert_eq!(frame.node_id, "test_sync_manifest.db");
 
     // 3. Initialize Vector Mesh client
     let mesh = VectorMesh::new("http://localhost:6333");

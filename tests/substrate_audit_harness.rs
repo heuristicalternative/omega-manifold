@@ -1,4 +1,4 @@
-use omega_manifold::omega_handshake::{OMEGA_UNIVERSAL_BASELINE, OmegaDaemonCoordinator, OmegaManifoldHandshake};
+use omega_manifold::omega_handshake::{OMEGA_UNIVERSAL_BASELINE, OmegaDaemonCoordinator};
 use omega_manifold::substrate_audit::SubstrateAuditor;
 
 #[test]

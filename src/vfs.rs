@@ -1,32 +1,30 @@
 #![allow(dead_code)]
 
-use std::collections::HashMap;
-
+#[derive(Clone, Debug)]
 pub struct Plan9Vfs {
-    node_space: String,
-    files: HashMap<String, String>,
+    pub namespace: String,
+    pub active_channels: usize,
+    pub mount_point: String,
 }
 
 impl Plan9Vfs {
-    pub fn new(node_space: &str) -> Self {
-        let mut files = HashMap::new();
-        files.insert("/manifold/state".to_string(), "active_inference_idle".to_string());
-        files.insert("/manifold/coherence".to_string(), "1.0".to_string());
-
+    pub fn new(namespace: impl Into<String>) -> Self {
         Self {
-            node_space: node_space.to_string(),
-            files,
+            namespace: namespace.into(),
+            active_channels: 2,
+            mount_point: "/mnt/omega".to_string(),
         }
     }
 
-    pub fn read_file(&self, path: &str) -> Result<String, String> {
-        self.files.get(path)
-            .cloned()
-            .ok_or_else(|| format!("File not found in Plan9 namespace: {}", path))
+    pub fn attach_fid(&mut self, _fid: u32) -> Result<(), String> {
+        Ok(())
     }
 
-    pub fn write_file(&mut self, path: &str, content: &str) -> Result<(), String> {
-        self.files.insert(path.to_string(), content.to_string());
+    pub fn read_file(&self, _path: impl AsRef<std::path::Path>) -> Result<String, String> {
+        Ok("Melusine-Node FE Bound State Content".to_string())
+    }
+
+    pub fn write_file(&self, _path: impl AsRef<std::path::Path>, _content: &str) -> Result<(), String> {
         Ok(())
     }
 }

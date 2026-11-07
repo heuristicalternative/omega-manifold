@@ -1,5 +1,5 @@
 use omega_manifold::cluster_sim::P2PMeshCluster;
-use omega_manifold::omega_handshake::{OMEGA_UNIVERSAL_BASELINE, OmegaDaemonCoordinator, OmegaManifoldHandshake};
+use omega_manifold::omega_handshake::{OMEGA_UNIVERSAL_BASELINE, OmegaDaemonCoordinator};
 use omega_manifold::self_heal;
 use omega_manifold::sheaf_cohomology::{SheafManifold, topological_realignment};
 

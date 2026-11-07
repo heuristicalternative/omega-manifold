@@ -1,7 +1,7 @@
 use omega_manifold::ebpf_probe::EbpfProbe;
 use omega_manifold::manifold_routing::{ManifoldSignal, StigmergicRouter};
 use omega_manifold::mutual_credit::{georgist_node_t, GeorgistLedger};
-use omega_manifold::omega_handshake::{OmegaDaemonCoordinator, OmegaManifoldHandshake, OMEGA_UNIVERSAL_BASELINE};
+use omega_manifold::omega_handshake::{OmegaDaemonCoordinator, OMEGA_UNIVERSAL_BASELINE};
 use omega_manifold::sheaf_cohomology::{SheafManifold, SheafSection, topological_realignment};
 use omega_manifold::state_sync::ManifoldSnapshot;
 use omega_manifold::wasm_runtime::WasmRuntime;
@@ -70,7 +70,7 @@ fn test_omega_pipeline_end_to_end() {
         107,
         "0xASTx702".to_string(),
         tensor_state.clone(),
-        vec![("melusine_node_01".to_string(), 0.0)],
+        vec![],
     );
     let path = "/tmp/opencode/omega_pipeline_snapshot.txt";
     snapshot.export_snapshot(path).expect("export snapshot");
