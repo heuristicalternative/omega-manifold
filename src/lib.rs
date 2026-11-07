@@ -1,3 +1,4 @@
+pub mod health_monitor;
 pub mod gossip_protocol;
 pub mod conservation_checker;
 pub mod ebpf_consumer;
