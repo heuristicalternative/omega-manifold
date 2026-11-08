@@ -1,3 +1,5 @@
 target/
 hmmf_cache/
 .aider*
+manifold_state.db
+omega_telemetry.log
