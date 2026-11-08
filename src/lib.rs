@@ -44,3 +44,4 @@ pub use vfs::Plan9Vfs;
 pub mod plan9_vfs {
     pub use crate::vfs::Plan9Vfs;
 }
+pub mod sync_manager;
