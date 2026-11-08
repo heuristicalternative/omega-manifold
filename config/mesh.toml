@@ -1,0 +1,9 @@
+[node]
+id = "melusine-master-node"
+bind_address = "127.0.0.1:9001"
+role = "primary_aggregator"
+
+[[peers]]
+id = "node-secondary-01"
+address = "127.0.0.1:9002"
+enabled = true
