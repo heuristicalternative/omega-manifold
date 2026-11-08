@@ -1,5 +1,7 @@
-use rusqlite::{Connection, Result};
+use rusqlite::Connection;
 use serde::{Serialize, Deserialize};
+use std::io::Write;
+use std::net::TcpStream;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SyncEvent {
@@ -20,7 +22,7 @@ impl SyncManager {
         }
     }
 
-    pub fn verify_state_integrity(&self) -> Result<bool> {
+    pub fn verify_state_integrity(&self) -> rusqlite::Result<bool> {
         let conn = Connection::open(&self.db_path)?;
         conn.execute(
             "CREATE TABLE IF NOT EXISTS telemetry_events (
@@ -36,7 +38,7 @@ impl SyncManager {
         Ok(count >= 0)
     }
 
-    pub fn fetch_pending_events(&self, limit: i64) -> Result<Vec<SyncEvent>> {
+    pub fn fetch_pending_events(&self, limit: i64) -> rusqlite::Result<Vec<SyncEvent>> {
         let conn = Connection::open(&self.db_path)?;
         let mut stmt = conn.prepare(
             "SELECT id, timestamp, hash, manifold_weight FROM telemetry_events ORDER BY id ASC LIMIT ?1"
@@ -55,6 +57,13 @@ impl SyncManager {
             events.push(event?);
         }
         Ok(events)
+    }
+
+    pub fn handle_client(&self, mut stream: TcpStream) -> Result<(), Box<dyn std::error::Error>> {
+        let events = self.fetch_pending_events(50)?;
+        let payload = serde_json::to_string(&events).unwrap_or_else(|_| "[]".to_string());
+        stream.write_all(payload.as_bytes())?;
+        Ok(())
     }
 }
 
