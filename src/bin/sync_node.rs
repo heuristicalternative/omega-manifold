@@ -1,30 +1,29 @@
-use omega_manifold::sync_manager::SyncManager;
-use std::net::TcpStream;
-
-#[cfg(unix)]
-use std::os::unix::io::FromRawFd;
+use omega_manifold::config::MeshConfig;
+use omega_manifold::discovery::PeerRegistry;
+use omega_manifold::ebpf::EbpfMonitor;
+use omega_manifold::nostr_sync::NostrSyncManager;
+use std::thread;
+use std::time::Duration;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let manager = SyncManager::new("manifold_state.db");
-    manager.verify_state_integrity()?;
+    println!("[OMEGA] Loading mesh configuration from config/mesh.toml...");
+    let config = MeshConfig::load_from_file("config/mesh.toml")?;
+    println!("[OMEGA] Loaded config for node: {}", config.node_id);
 
-    let stream = if std::env::var("INVOCATION_ID").is_ok() {
-        println!("[SYNC_NODE] Running via systemd socket activation (Accept=yes).");
-        #[cfg(unix)]
-        unsafe { TcpStream::from_raw_fd(0) }
-        #[cfg(not(unix))]
-        {
-            return Err("Socket activation only supported on Unix".into());
-        }
-    } else {
-        eprintln!("[SYNC_NODE] Error: Expected systemd socket activation stream.");
-        return Err("Not invoked via systemd socket activation".into());
-    };
+    let ebpf_monitor = EbpfMonitor::new();
+    ebpf_monitor.inspect_packet_telemetry();
 
-    // Handle client safely, ignoring broken pipe or EOF disconnects from probes like netcat
-    if let Err(e) = manager.handle_client(stream) {
-        eprintln!("[SYNC_NODE] Client connection finished or dropped: {}", e);
+    let registry = PeerRegistry::new_from_config(&config);
+    registry.start_udp_discovery()?;
+
+    // Initialize local Nostr relay sync manager
+    let nostr_manager = NostrSyncManager::new("ws://127.0.0.1:7777");
+    nostr_manager.publish_state_checkpoint("OMEGA_STATE_CHECKPOINT:v1.0.0:active");
+
+    println!("[OMEGA] Peer registry and synchronization layers active. Entering persistent daemon loop...");
+    
+    // Keep process alive for systemd socket activation and background sync
+    loop {
+        thread::sleep(Duration::from_secs(60));
     }
-
-    Ok(())
 }
