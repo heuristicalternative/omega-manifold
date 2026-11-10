@@ -51,3 +51,5 @@ pub mod config;
 pub mod ebpf;
 pub mod nostr_sync;
 pub mod ast_hex;
+pub mod ebpf_ring_listener;
+pub mod omega_bootstrap;
