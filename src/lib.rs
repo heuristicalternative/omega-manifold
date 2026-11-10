@@ -55,3 +55,4 @@ pub mod omega_bootstrap;
 pub mod ast_hex;
 pub mod dmabuf_bridge;
 pub mod mesh_peering;
+pub mod consensus_engine;
