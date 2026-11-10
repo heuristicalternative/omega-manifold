@@ -45,3 +45,9 @@ pub mod plan9_vfs {
     pub use crate::vfs::Plan9Vfs;
 }
 pub mod sync_manager;
+
+pub mod discovery;
+pub mod config;
+pub mod ebpf;
+pub mod nostr_sync;
+pub mod ast_hex;
