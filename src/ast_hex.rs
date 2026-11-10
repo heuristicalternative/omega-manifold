@@ -1,85 +1,48 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AstHexModule {
-    pub name: &'static str,
-    pub ast_kind: &'static str,
-    pub hex_coordinates: [i32; 6],
-    pub hyperplane_valid: bool,
-    pub metric_tensor_type: &'static str,
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub struct HexCoord6 {
+    pub h: i32,
+    pub k: i32,
+    pub l: i32,
+    pub m: i32,
+    pub n: i32,
+    pub p: i32,
 }
 
-pub const OMEGA_MASTER_CATALOG: &[AstHexModule] = &[
-    AstHexModule {
-        name: "Point 0 (Source / Singularity)",
-        ast_kind: "RootAxiom",
-        hex_coordinates: [0, 0, 0, 0, 0, 0],
-        hyperplane_valid: true,
-        metric_tensor_type: "Identity (Delta)",
-    },
-    AstHexModule {
-        name: "RhizomeOS P2P Mesh & Gossip Plane",
-        ast_kind: "ControlFlow",
-        hex_coordinates: [12, -4, -8, 2, -2, 0],
-        hyperplane_valid: true,
-        metric_tensor_type: "Isotropic Flat",
-    },
-    AstHexModule {
-        name: "Radicle-Style DAG Lineage & Clocks",
-        ast_kind: "DataBinding",
-        hex_coordinates: [-8, 14, -6, 4, -2, -2],
-        hyperplane_valid: true,
-        metric_tensor_type: "Causal Exponential",
-    },
-    AstHexModule {
-        name: "Riemannian Manifold Gluing (H1=0)",
-        ast_kind: "Constraint",
-        hex_coordinates: [6, 6, -12, 0, 0, 0],
-        hyperplane_valid: true,
-        metric_tensor_type: "Overlap Jacobian",
-    },
-    AstHexModule {
-        name: "Mutual Credit Graph Clearing",
-        ast_kind: "Transform",
-        hex_coordinates: [-10, 2, 8, -4, 6, -2],
-        hyperplane_valid: true,
-        metric_tensor_type: "Weighted Graph Flow",
-    },
-    AstHexModule {
-        name: "AIMC / Memristive Crossbars",
-        ast_kind: "Transform",
-        hex_coordinates: [15, -15, 0, 5, -5, 0],
-        hyperplane_valid: true,
-        metric_tensor_type: "Conductance Gradient",
-    },
-    AstHexModule {
-        name: "JIT Holographic Circuits",
-        ast_kind: "Transform",
-        hex_coordinates: [-18, 12, 6, -6, 12, -6],
-        hyperplane_valid: true,
-        metric_tensor_type: "Acoustic-Optical Coupled",
-    },
-    AstHexModule {
-        name: "AST-to-HEX Compiler Pipeline",
-        ast_kind: "Transform",
-        hex_coordinates: [4, -10, 6, -2, 4, -2],
-        hyperplane_valid: true,
-        metric_tensor_type: "Depth-Density Exponential",
-    },
-];
+impl HexCoord6 {
+    pub const fn new(h: i32, k: i32, l: i32, m: i32, n: i32, p: i32) -> Self {
+        Self { h, k, l, m, n, p }
+    }
 
-pub fn validate_hyperplanes() -> bool {
-    OMEGA_MASTER_CATALOG.iter().all(|m| {
-        let sum: i32 = m.hex_coordinates.iter().sum();
-        sum == 0 && m.hyperplane_valid
-    })
+    pub fn validate_hyperplane(&self) -> bool {
+        let sum = self.h as i64 + self.k as i64 + self.l as i64 + self.m as i64 + self.n as i64 + self.p as i64;
+        sum == 0
+    }
+
+    pub fn rotate_60_degrees(&self) -> Self {
+        Self {
+            h: self.k,
+            k: self.l,
+            l: self.m,
+            m: self.n,
+            n: self.p,
+            p: self.h,
+        }
+    }
 }
 
-// Newly added ASTX Coordinate Module for Google Docs Archive Synchronization
-pub const ASTX_ARCHIVE_MODULE: AstHexModule = AstHexModule {
-    name: "Google Docs Archive ASTX Ingestion Substrate",
-    ast_kind: "DataBinding",
-    hex_coordinates: [10, -5, -5, 2, -2, 0],
-    hyperplane_valid: true,
-    metric_tensor_type: "Archive Hyper-Tensor",
-};
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_hex_coord_invariants() {
+        let coord = HexCoord6::new(1, -1, 2, -2, 0, 0);
+        assert!(coord.validate_hyperplane(), "Hyperplane sum must be zero for H1=0");
+        
+        let rotated = coord.rotate_60_degrees();
+        assert_eq!(rotated.h, -1);
+        assert_eq!(rotated.p, 1);
+    }
+}
