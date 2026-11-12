@@ -102,5 +102,425 @@
             0
         ],
         "metric_tensor_scale": 1.809
+    },
+    {
+        "id": 1008,
+        "node": "Distributed-Scheduler-v1008",
+        "depth": 1,
+        "hex_coordinates": [
+            1,
+            -1,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.1618
+    },
+    {
+        "id": 1009,
+        "node": "Memory-Mapped-Ringbuf-v1009",
+        "depth": 2,
+        "hex_coordinates": [
+            3,
+            -2,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.3336
+    },
+    {
+        "id": 1010,
+        "node": "Semantic-Sheaf-Node-v1010",
+        "depth": 3,
+        "hex_coordinates": [
+            5,
+            -3,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.5054
+    },
+    {
+        "id": 1011,
+        "node": "E8-Tensor-Projector-v1011",
+        "depth": 4,
+        "hex_coordinates": [
+            4,
+            -4,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.6772
+    },
+    {
+        "id": 1012,
+        "node": "Nostr-Relay-Sync-v1012",
+        "depth": 5,
+        "hex_coordinates": [
+            6,
+            -5,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.849
+    },
+    {
+        "id": 1013,
+        "node": "Radicle-DAG-Ledger-v1013",
+        "depth": 6,
+        "hex_coordinates": [
+            8,
+            -6,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.0208
+    },
+    {
+        "id": 1014,
+        "node": "Kuramoto-Oscillator-Mesh-v1014",
+        "depth": 1,
+        "hex_coordinates": [
+            1,
+            -1,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.2218
+    },
+    {
+        "id": 1015,
+        "node": "Phonon-Holographic-Buffer-v1015",
+        "depth": 2,
+        "hex_coordinates": [
+            3,
+            -2,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.3936
+    },
+    {
+        "id": 1016,
+        "node": "CRDT-Riemannian-Bridge-v1016",
+        "depth": 3,
+        "hex_coordinates": [
+            5,
+            -3,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.5654
+    },
+    {
+        "id": 1017,
+        "node": "Distributed-Scheduler-v1017",
+        "depth": 4,
+        "hex_coordinates": [
+            4,
+            -4,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.7372
+    },
+    {
+        "id": 1018,
+        "node": "Memory-Mapped-Ringbuf-v1018",
+        "depth": 5,
+        "hex_coordinates": [
+            6,
+            -5,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.909
+    },
+    {
+        "id": 1019,
+        "node": "Semantic-Sheaf-Node-v1019",
+        "depth": 6,
+        "hex_coordinates": [
+            8,
+            -6,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.0808
+    },
+    {
+        "id": 1020,
+        "node": "E8-Tensor-Projector-v1020",
+        "depth": 1,
+        "hex_coordinates": [
+            1,
+            -1,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.2818
+    },
+    {
+        "id": 1021,
+        "node": "Nostr-Relay-Sync-v1021",
+        "depth": 2,
+        "hex_coordinates": [
+            3,
+            -2,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.4536
+    },
+    {
+        "id": 1022,
+        "node": "Radicle-DAG-Ledger-v1022",
+        "depth": 3,
+        "hex_coordinates": [
+            5,
+            -3,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.6254
+    },
+    {
+        "id": 1023,
+        "node": "Kuramoto-Oscillator-Mesh-v1023",
+        "depth": 4,
+        "hex_coordinates": [
+            4,
+            -4,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.7972
+    },
+    {
+        "id": 1024,
+        "node": "Phonon-Holographic-Buffer-v1024",
+        "depth": 5,
+        "hex_coordinates": [
+            6,
+            -5,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.969
+    },
+    {
+        "id": 1025,
+        "node": "CRDT-Riemannian-Bridge-v1025",
+        "depth": 6,
+        "hex_coordinates": [
+            8,
+            -6,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.1408
+    },
+    {
+        "id": 1026,
+        "node": "Distributed-Scheduler-v1026",
+        "depth": 1,
+        "hex_coordinates": [
+            1,
+            -1,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.3418
+    },
+    {
+        "id": 1027,
+        "node": "Memory-Mapped-Ringbuf-v1027",
+        "depth": 2,
+        "hex_coordinates": [
+            3,
+            -2,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.5136
+    },
+    {
+        "id": 1028,
+        "node": "Semantic-Sheaf-Node-v1028",
+        "depth": 3,
+        "hex_coordinates": [
+            5,
+            -3,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.6854
+    },
+    {
+        "id": 1029,
+        "node": "E8-Tensor-Projector-v1029",
+        "depth": 4,
+        "hex_coordinates": [
+            4,
+            -4,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.8572
+    },
+    {
+        "id": 1030,
+        "node": "Nostr-Relay-Sync-v1030",
+        "depth": 5,
+        "hex_coordinates": [
+            6,
+            -5,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 2.029
+    },
+    {
+        "id": 1031,
+        "node": "Radicle-DAG-Ledger-v1031",
+        "depth": 6,
+        "hex_coordinates": [
+            8,
+            -6,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.2008
+    },
+    {
+        "id": 1032,
+        "node": "Kuramoto-Oscillator-Mesh-v1032",
+        "depth": 1,
+        "hex_coordinates": [
+            1,
+            -1,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.4018
+    },
+    {
+        "id": 1033,
+        "node": "Phonon-Holographic-Buffer-v1033",
+        "depth": 2,
+        "hex_coordinates": [
+            3,
+            -2,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.5736
+    },
+    {
+        "id": 1034,
+        "node": "CRDT-Riemannian-Bridge-v1034",
+        "depth": 3,
+        "hex_coordinates": [
+            5,
+            -3,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.7454
+    },
+    {
+        "id": 1035,
+        "node": "Distributed-Scheduler-v1035",
+        "depth": 4,
+        "hex_coordinates": [
+            4,
+            -4,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.9172
+    },
+    {
+        "id": 1036,
+        "node": "Memory-Mapped-Ringbuf-v1036",
+        "depth": 5,
+        "hex_coordinates": [
+            6,
+            -5,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 2.089
+    },
+    {
+        "id": 1037,
+        "node": "Semantic-Sheaf-Node-v1037",
+        "depth": 6,
+        "hex_coordinates": [
+            8,
+            -6,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.2608
     }
 ]

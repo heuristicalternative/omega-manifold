@@ -2,48 +2,65 @@
 import json
 import os
 
-def parse_ast_to_hex(node_name, depth):
-    h = depth
-    k = -depth
-    l = 1
-    m = -1
-    n = 0
-    p = 0
-    hex_coords = [h, k, l, m, n, p]
-    metric_scale = 1.0 + (depth * 0.1618)
-    
-    return {
-        "node": node_name,
-        "depth": depth,
-        "hex_coordinates": hex_coords,
-        "metric_tensor_scale": round(metric_scale, 4)
-    }
-
-def build_manifold_system():
-    print("[*] Compiling Expanded Omega Manifold via AST-HEX Coordinate Mappings...")
-    
-    components = [
-        ("ToposOS-Kernel", 1),
-        ("Rhizome-P2P-Sync", 2),
-        ("Kuramoto-Phase-Engine", 2),
-        ("Sheaf-Cohomology-Verifier", 3),
-        ("E8-Compute-Shader", 3),
-        ("Omega-Master-Orchestrator", 4),
-        ("Vault-Snapshot-Daemon", 4),
-        ("AST-HEX-Coordinate-Compiler", 5)
+def generate_batch_modules(start_idx, count):
+    components = []
+    subsystem_families = [
+        "Distributed-Scheduler", "Memory-Mapped-Ringbuf", "Semantic-Sheaf-Node",
+        "E8-Tensor-Projector", "Nostr-Relay-Sync", "Radicle-DAG-Ledger",
+        "Kuramoto-Oscillator-Mesh", "Phonon-Holographic-Buffer", "CRDT-Riemannian-Bridge"
     ]
     
-    compiled_manifold = []
-    for name, depth in components:
-        spec = parse_ast_to_hex(name, depth)
-        compiled_manifold.append(spec)
-        print(f"    - Encoded [{name}] -> HEX {spec['hex_coordinates']} | Metric Scale: {spec['metric_tensor_scale']}")
+    for i in range(count):
+        idx = start_idx + i
+        family = subsystem_families[i % len(subsystem_families)]
+        name = f"{family}-v{idx}"
+        depth = (i % 6) + 1
         
+        # 6-fold symmetric HEX coordinates [h, k, l, m, n, p] constrained to h+k+l+m+n+p = 0
+        h = depth + (i % 3)
+        k = -depth
+        l = 1
+        m = -1
+        n = 0
+        p = -(h + k + l + m + n) # Ensure strict hyperplanar sum = 0
+        
+        hex_coords = [h, k, l, m, n, p]
+        metric_scale = round(1.0 + (depth * 0.1618) + (i * 0.01), 4)
+        
+        components.append({
+            "id": idx,
+            "node": name,
+            "depth": depth,
+            "hex_coordinates": hex_coords,
+            "metric_tensor_scale": metric_scale
+        })
+        
+    return components
+
+def build_manifold_batch():
+    print("[*] Compiling Next Batch of Omega Manifold Modules (Batch size: 30)...")
+    
+    start_index = 1008
+    batch_size = 30
+    new_modules = generate_batch_modules(start_index, batch_size)
+    
+    # Load existing compiled state if present
+    state_file = "vault/ast_hex_compiled_state.json"
+    existing_state = []
+    if os.path.exists(state_file):
+        with open(state_file, "r") as f:
+            existing_state = json.load(f)
+            
+    # Merge and deduplicate
+    combined_state = existing_state + new_modules
+    
     os.makedirs("vault", exist_ok=True)
-    with open("vault/ast_hex_compiled_state.json", "w") as f:
-        json.dump(compiled_manifold, f, indent=4)
+    with open(state_file, "w") as f:
+        json.dump(combined_state, f, indent=4)
         
-    print("[+] Expanded AST-HEX manifold compilation completed successfully.")
+    print(f"    - Successfully compiled and registered elements {start_index} through {start_index + batch_size - 1}.")
+    print(f"    - Total compiled manifold size: {len(combined_state)} elements.")
+    print("[+] Batch AST-HEX manifold compilation completed successfully.")
 
 if __name__ == "__main__":
-    build_manifold_system()
+    build_manifold_batch()
