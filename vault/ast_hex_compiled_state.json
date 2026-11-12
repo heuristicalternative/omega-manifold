@@ -63,5 +63,44 @@
             0
         ],
         "metric_tensor_scale": 1.4854
+    },
+    {
+        "node": "Omega-Master-Orchestrator",
+        "depth": 4,
+        "hex_coordinates": [
+            4,
+            -4,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.6472
+    },
+    {
+        "node": "Vault-Snapshot-Daemon",
+        "depth": 4,
+        "hex_coordinates": [
+            4,
+            -4,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.6472
+    },
+    {
+        "node": "AST-HEX-Coordinate-Compiler",
+        "depth": 5,
+        "hex_coordinates": [
+            5,
+            -5,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.809
     }
 ]

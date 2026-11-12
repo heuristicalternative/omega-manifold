@@ -3,8 +3,6 @@ import json
 import os
 
 def parse_ast_to_hex(node_name, depth):
-    # Bijective homeomorphism mapping AST node to 6-fold symmetric HEX coordinates [h,k,l,m,n,p]
-    # Satisfying h + k + l + m + n + p = 0
     h = depth
     k = -depth
     l = 1
@@ -12,8 +10,6 @@ def parse_ast_to_hex(node_name, depth):
     n = 0
     p = 0
     hex_coords = [h, k, l, m, n, p]
-    
-    # Compute local Riemannian metric tensor g_mu_nu component scaling
     metric_scale = 1.0 + (depth * 0.1618)
     
     return {
@@ -24,14 +20,17 @@ def parse_ast_to_hex(node_name, depth):
     }
 
 def build_manifold_system():
-    print("[*] Compiling Omega Manifold via AST-HEX Coordinate Mappings...")
+    print("[*] Compiling Expanded Omega Manifold via AST-HEX Coordinate Mappings...")
     
     components = [
         ("ToposOS-Kernel", 1),
         ("Rhizome-P2P-Sync", 2),
         ("Kuramoto-Phase-Engine", 2),
         ("Sheaf-Cohomology-Verifier", 3),
-        ("E8-Compute-Shader", 3)
+        ("E8-Compute-Shader", 3),
+        ("Omega-Master-Orchestrator", 4),
+        ("Vault-Snapshot-Daemon", 4),
+        ("AST-HEX-Coordinate-Compiler", 5)
     ]
     
     compiled_manifold = []
@@ -44,7 +43,7 @@ def build_manifold_system():
     with open("vault/ast_hex_compiled_state.json", "w") as f:
         json.dump(compiled_manifold, f, indent=4)
         
-    print("[+] AST-HEX manifold compilation and spatial mapping completed successfully.")
+    print("[+] Expanded AST-HEX manifold compilation completed successfully.")
 
 if __name__ == "__main__":
     build_manifold_system()
