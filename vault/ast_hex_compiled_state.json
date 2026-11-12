@@ -1,0 +1,67 @@
+[
+    {
+        "node": "ToposOS-Kernel",
+        "depth": 1,
+        "hex_coordinates": [
+            1,
+            -1,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.1618
+    },
+    {
+        "node": "Rhizome-P2P-Sync",
+        "depth": 2,
+        "hex_coordinates": [
+            2,
+            -2,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.3236
+    },
+    {
+        "node": "Kuramoto-Phase-Engine",
+        "depth": 2,
+        "hex_coordinates": [
+            2,
+            -2,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.3236
+    },
+    {
+        "node": "Sheaf-Cohomology-Verifier",
+        "depth": 3,
+        "hex_coordinates": [
+            3,
+            -3,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.4854
+    },
+    {
+        "node": "E8-Compute-Shader",
+        "depth": 3,
+        "hex_coordinates": [
+            3,
+            -3,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.4854
+    }
+]
