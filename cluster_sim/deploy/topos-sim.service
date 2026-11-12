@@ -1,0 +1,14 @@
+[Unit]
+Description=ToposOS Local Multi-Node Cluster Simulation
+After=network.target tailscaled.service
+
+[Service]
+Type=simple
+User=dante
+WorkingDirectory=/home/dante/Documents/OmegaManifold_Local
+ExecStart=/usr/bin/python3 cluster_sim/run_local_cluster.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
