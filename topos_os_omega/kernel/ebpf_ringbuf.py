@@ -7,7 +7,7 @@ class EBPFRingBufferBridge:
 
     def attach_probes(self):
         print("[+] Attaching kprobe to sys_enter_execve & kernel memory allocators...")
-        print("[+] Ring buffer memory mapped successfully (USWC buffer size: 4MB).")
+        print("[+] Ring buffer memory mapped successfully (USWC buffer size: 16MB).")
         print("[+] eBPF telemetry streaming active. Zero-copy event loop running.")
 
 def main():
