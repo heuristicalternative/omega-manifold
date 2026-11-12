@@ -16,13 +16,12 @@ def generate_batch_modules(start_idx, count):
         name = f"{family}-v{idx}"
         depth = (i % 6) + 1
         
-        # 6-fold symmetric HEX coordinates [h, k, l, m, n, p] constrained to h+k+l+m+n+p = 0
-        h = depth + (i % 3)
+        h = depth + ((i + 1) % 3)
         k = -depth
         l = 1
         m = -1
         n = 0
-        p = -(h + k + l + m + n) # Ensure strict hyperplanar sum = 0
+        p = -(h + k + l + m + n)
         
         hex_coords = [h, k, l, m, n, p]
         metric_scale = round(1.0 + (depth * 0.1618) + (i * 0.01), 4)
@@ -38,20 +37,18 @@ def generate_batch_modules(start_idx, count):
     return components
 
 def build_manifold_batch():
-    print("[*] Compiling Next Batch of Omega Manifold Modules (Batch size: 30)...")
+    print("[*] Compiling Batch (Elements 1038-1067) of Omega Manifold Modules...")
     
-    start_index = 1008
+    start_index = 1038
     batch_size = 30
     new_modules = generate_batch_modules(start_index, batch_size)
     
-    # Load existing compiled state if present
     state_file = "vault/ast_hex_compiled_state.json"
     existing_state = []
     if os.path.exists(state_file):
         with open(state_file, "r") as f:
             existing_state = json.load(f)
             
-    # Merge and deduplicate
     combined_state = existing_state + new_modules
     
     os.makedirs("vault", exist_ok=True)
