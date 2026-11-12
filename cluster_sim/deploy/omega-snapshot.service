@@ -1,0 +1,9 @@
+[Unit]
+Description=ToposOS Omega Vault State Snapshot Service
+After=network.target
+
+[Service]
+Type=oneshot
+User=dante
+WorkingDirectory=/home/dante/Documents/OmegaManifold_Local
+ExecStart=/usr/bin/python3 topos_os_omega/vault_snapshotter.py

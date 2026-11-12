@@ -1,0 +1,11 @@
+[Unit]
+Description=Run ToposOS Omega Vault Snapshot Periodically
+After=network.target
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30min
+Unit=omega-snapshot.service
+
+[Install]
+WantedBy=timers.target
