@@ -1,0 +1,14 @@
+[Unit]
+Description=ToposOS Omega Master Orchestrator Service
+After=network.target topos-sim.service
+
+[Service]
+Type=simple
+User=dante
+WorkingDirectory=/home/dante/Documents/OmegaManifold_Local
+ExecStart=/usr/bin/python3 topos_os_omega/omega_master.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
