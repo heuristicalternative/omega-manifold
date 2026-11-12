@@ -1,0 +1,11 @@
+{
+    "node": "melusine",
+    "baseline": "G_Universal_Baseline_v16.78_Extended",
+    "active_phases": 1005,
+    "ast_hex_registry": "0x7F4C8A9E3B2011D4",
+    "mesh_nodes": [
+        "melusine",
+        "pandora",
+        "cassandra"
+    ]
+}

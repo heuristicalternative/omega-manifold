@@ -1,0 +1,7 @@
+{
+    "node": "melusine",
+    "active_phases": 1007,
+    "gpu_pipeline": "WGSL compute shader active",
+    "target_power_watts": 5.0,
+    "status": "OPTIMIZED"
+}

@@ -1,0 +1,8 @@
+node_id = "melusine"
+listen_addr = "0.0.0.0:9001"
+enable_udp_broadcast = true
+broadcast_port = 9002
+
+[[static_peers]]
+id = "pandora"
+endpoint = "192.168.0.100:9001"

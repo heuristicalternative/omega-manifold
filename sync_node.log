@@ -1,0 +1,6 @@
+warning: omega_manifold@0.1.0: [OMEGA_BUILD] Target Architecture: x86_64 | OS: linux
+warning: omega_manifold@0.1.0: [OMEGA_BUILD] eBPF subsystem available.
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.14s
+     Running `target/debug/sync_node`
+[SYNC_NODE] Omega Manifold synchronization listener active on 127.0.0.1:9001
+[SYNC_NODE] Incoming peer sync connection accepted.
