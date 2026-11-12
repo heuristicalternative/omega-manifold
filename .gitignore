@@ -3,3 +3,8 @@ hmmf_cache/
 .aider*
 manifold_state.db
 omega_telemetry.log
+/build/
+/cluster_sim/cassandra_node/
+/cluster_sim/pandora_node/
+*.db
+*.log
