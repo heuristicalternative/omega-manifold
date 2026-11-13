@@ -83,9 +83,9 @@ def generate_infinite_batch(start_idx, count, conn):
     return total_count
 
 def build_manifold_batch():
-    start_index = 31929
+    start_index = 40929
     batch_size = 1000
-    print(f"[*] Compiling Post-30K Manifold Batch (Elements {start_index}-{start_index + batch_size - 1})...")
+    print(f"[*] Compiling Post-32K Manifold Batch (Elements {start_index}-{start_index + batch_size - 1})...")
     
     conn = init_db()
     total_elements = generate_infinite_batch(start_index, batch_size, conn)
@@ -93,7 +93,7 @@ def build_manifold_batch():
     
     print(f"    - Successfully compiled and inserted elements {start_index} through {start_index + batch_size - 1}.")
     print(f"    - Total SQLite manifold size: {total_elements} elements.")
-    print("[+] Post-30K batch compilation completed successfully.")
+    print("[+] Post-32K batch compilation completed successfully.")
 
 if __name__ == "__main__":
     build_manifold_batch()
