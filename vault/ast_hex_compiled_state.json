@@ -12132,5 +12132,755 @@
         ],
         "metric_tensor_scale": 1.5686,
         "status": "compiled_and_verified"
+    },
+    {
+        "id": 1828,
+        "node": "eBPF-Kernel-Probe-omega-1828",
+        "depth": 1,
+        "hex_coordinates": [
+            0,
+            -1,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 1.1618,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1829,
+        "node": "WebGPU-Compute-Kernel-omega-1829",
+        "depth": 2,
+        "hex_coordinates": [
+            4,
+            -2,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.3286,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1830,
+        "node": "Sheaf-Cohomology-Verifier-omega-1830",
+        "depth": 3,
+        "hex_coordinates": [
+            3,
+            -3,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.4954,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1831,
+        "node": "E8-Lattice-Projector-omega-1831",
+        "depth": 4,
+        "hex_coordinates": [
+            2,
+            -4,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 1.6622,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1832,
+        "node": "Kuramoto-Phase-Sync-omega-1832",
+        "depth": 5,
+        "hex_coordinates": [
+            6,
+            -5,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.829,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1833,
+        "node": "Radicle-P2P-Ledger-omega-1833",
+        "depth": 6,
+        "hex_coordinates": [
+            5,
+            -6,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 1.9958,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1834,
+        "node": "Nostr-Relay-Daemon-omega-1834",
+        "depth": 7,
+        "hex_coordinates": [
+            9,
+            -7,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.1626,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1835,
+        "node": "Riemannian-Metric-Tensor-omega-1835",
+        "depth": 8,
+        "hex_coordinates": [
+            8,
+            -8,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 2.3294,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1836,
+        "node": "Non-Commutative-Bridge-omega-1836",
+        "depth": 1,
+        "hex_coordinates": [
+            -1,
+            -1,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 1.2018,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1837,
+        "node": "Topos-Monad-Router-omega-1837",
+        "depth": 2,
+        "hex_coordinates": [
+            3,
+            -2,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.3686,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1838,
+        "node": "Stigmergic-Feedback-Loop-omega-1838",
+        "depth": 3,
+        "hex_coordinates": [
+            2,
+            -3,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 1.5354,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1839,
+        "node": "Homeorhetic-State-Engine-omega-1839",
+        "depth": 4,
+        "hex_coordinates": [
+            6,
+            -4,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.7022,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1840,
+        "node": "eBPF-Kernel-Probe-omega-1840",
+        "depth": 5,
+        "hex_coordinates": [
+            5,
+            -5,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.869,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1841,
+        "node": "WebGPU-Compute-Kernel-omega-1841",
+        "depth": 6,
+        "hex_coordinates": [
+            4,
+            -6,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 2.0358,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1842,
+        "node": "Sheaf-Cohomology-Verifier-omega-1842",
+        "depth": 7,
+        "hex_coordinates": [
+            8,
+            -7,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 2.2026,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1843,
+        "node": "E8-Lattice-Projector-omega-1843",
+        "depth": 8,
+        "hex_coordinates": [
+            7,
+            -8,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 2.3694,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1844,
+        "node": "Kuramoto-Phase-Sync-omega-1844",
+        "depth": 1,
+        "hex_coordinates": [
+            3,
+            -1,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.2418,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1845,
+        "node": "Radicle-P2P-Ledger-omega-1845",
+        "depth": 2,
+        "hex_coordinates": [
+            2,
+            -2,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.4086,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1846,
+        "node": "Nostr-Relay-Daemon-omega-1846",
+        "depth": 3,
+        "hex_coordinates": [
+            1,
+            -3,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 1.5754,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1847,
+        "node": "Riemannian-Metric-Tensor-omega-1847",
+        "depth": 4,
+        "hex_coordinates": [
+            5,
+            -4,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.7422,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1848,
+        "node": "Non-Commutative-Bridge-omega-1848",
+        "depth": 5,
+        "hex_coordinates": [
+            4,
+            -5,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 1.909,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1849,
+        "node": "Topos-Monad-Router-omega-1849",
+        "depth": 6,
+        "hex_coordinates": [
+            8,
+            -6,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.0758,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1850,
+        "node": "Stigmergic-Feedback-Loop-omega-1850",
+        "depth": 7,
+        "hex_coordinates": [
+            7,
+            -7,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 2.2426,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1851,
+        "node": "Homeorhetic-State-Engine-omega-1851",
+        "depth": 8,
+        "hex_coordinates": [
+            6,
+            -8,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 2.4094,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1852,
+        "node": "eBPF-Kernel-Probe-omega-1852",
+        "depth": 1,
+        "hex_coordinates": [
+            2,
+            -1,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.2818,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1853,
+        "node": "WebGPU-Compute-Kernel-omega-1853",
+        "depth": 2,
+        "hex_coordinates": [
+            1,
+            -2,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 1.4486,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1854,
+        "node": "Sheaf-Cohomology-Verifier-omega-1854",
+        "depth": 3,
+        "hex_coordinates": [
+            5,
+            -3,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.6154,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1855,
+        "node": "E8-Lattice-Projector-omega-1855",
+        "depth": 4,
+        "hex_coordinates": [
+            4,
+            -4,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.7822,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1856,
+        "node": "Kuramoto-Phase-Sync-omega-1856",
+        "depth": 5,
+        "hex_coordinates": [
+            3,
+            -5,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 1.949,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1857,
+        "node": "Radicle-P2P-Ledger-omega-1857",
+        "depth": 6,
+        "hex_coordinates": [
+            7,
+            -6,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 2.1158,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1858,
+        "node": "Nostr-Relay-Daemon-omega-1858",
+        "depth": 7,
+        "hex_coordinates": [
+            6,
+            -7,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 2.2826,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1859,
+        "node": "Riemannian-Metric-Tensor-omega-1859",
+        "depth": 8,
+        "hex_coordinates": [
+            10,
+            -8,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.4494,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1860,
+        "node": "Non-Commutative-Bridge-omega-1860",
+        "depth": 1,
+        "hex_coordinates": [
+            1,
+            -1,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.3218,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1861,
+        "node": "Topos-Monad-Router-omega-1861",
+        "depth": 2,
+        "hex_coordinates": [
+            0,
+            -2,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 1.4886,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1862,
+        "node": "Stigmergic-Feedback-Loop-omega-1862",
+        "depth": 3,
+        "hex_coordinates": [
+            4,
+            -3,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.6554,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1863,
+        "node": "Homeorhetic-State-Engine-omega-1863",
+        "depth": 4,
+        "hex_coordinates": [
+            3,
+            -4,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 1.8222,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1864,
+        "node": "eBPF-Kernel-Probe-omega-1864",
+        "depth": 5,
+        "hex_coordinates": [
+            7,
+            -5,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.989,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1865,
+        "node": "WebGPU-Compute-Kernel-omega-1865",
+        "depth": 6,
+        "hex_coordinates": [
+            6,
+            -6,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 2.1558,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1866,
+        "node": "Sheaf-Cohomology-Verifier-omega-1866",
+        "depth": 7,
+        "hex_coordinates": [
+            5,
+            -7,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 2.3226,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1867,
+        "node": "E8-Lattice-Projector-omega-1867",
+        "depth": 8,
+        "hex_coordinates": [
+            9,
+            -8,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 2.4894,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1868,
+        "node": "Kuramoto-Phase-Sync-omega-1868",
+        "depth": 1,
+        "hex_coordinates": [
+            0,
+            -1,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 1.3618,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1869,
+        "node": "Radicle-P2P-Ledger-omega-1869",
+        "depth": 2,
+        "hex_coordinates": [
+            4,
+            -2,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 1.5286,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1870,
+        "node": "Nostr-Relay-Daemon-omega-1870",
+        "depth": 3,
+        "hex_coordinates": [
+            3,
+            -3,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 1.6954,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1871,
+        "node": "Riemannian-Metric-Tensor-omega-1871",
+        "depth": 4,
+        "hex_coordinates": [
+            2,
+            -4,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 1.8622,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1872,
+        "node": "Non-Commutative-Bridge-omega-1872",
+        "depth": 5,
+        "hex_coordinates": [
+            6,
+            -5,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 2.029,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1873,
+        "node": "Topos-Monad-Router-omega-1873",
+        "depth": 6,
+        "hex_coordinates": [
+            5,
+            -6,
+            1,
+            -1,
+            0,
+            1
+        ],
+        "metric_tensor_scale": 2.1958,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1874,
+        "node": "Stigmergic-Feedback-Loop-omega-1874",
+        "depth": 7,
+        "hex_coordinates": [
+            9,
+            -7,
+            1,
+            -1,
+            0,
+            -2
+        ],
+        "metric_tensor_scale": 2.3626,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1875,
+        "node": "Homeorhetic-State-Engine-omega-1875",
+        "depth": 8,
+        "hex_coordinates": [
+            8,
+            -8,
+            1,
+            -1,
+            0,
+            0
+        ],
+        "metric_tensor_scale": 2.5294,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1876,
+        "node": "eBPF-Kernel-Probe-omega-1876",
+        "depth": 1,
+        "hex_coordinates": [
+            -1,
+            -1,
+            1,
+            -1,
+            0,
+            2
+        ],
+        "metric_tensor_scale": 1.4018,
+        "status": "compiled_and_verified"
+    },
+    {
+        "id": 1877,
+        "node": "WebGPU-Compute-Kernel-omega-1877",
+        "depth": 2,
+        "hex_coordinates": [
+            3,
+            -2,
+            1,
+            -1,
+            0,
+            -1
+        ],
+        "metric_tensor_scale": 1.5686,
+        "status": "compiled_and_verified"
     }
 ]
