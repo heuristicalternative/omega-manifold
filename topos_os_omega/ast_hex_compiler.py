@@ -4,7 +4,6 @@ import os
 
 def generate_infinite_batch(start_idx, count):
     components = []
-    # Expanded taxonomy of diverse system architectures
     architectures = [
         "eBPF-Kernel-Probe", "WebGPU-Compute-Kernel", "Sheaf-Cohomology-Verifier",
         "E8-Lattice-Projector", "Kuramoto-Phase-Sync", "Radicle-P2P-Ledger",
@@ -18,8 +17,7 @@ def generate_infinite_batch(start_idx, count):
         name = f"{arch}-omega-{idx}"
         depth = (i % 8) + 1
         
-        # Rigorous 6-fold symmetric HEX coordinates [h, k, l, m, n, p] summing to 0
-        h = depth + ((i * 3) % 5) - 2
+        h = depth + ((i * 3 + 1) % 5) - 2
         k = -depth
         l = 1
         m = -1
@@ -41,8 +39,8 @@ def generate_infinite_batch(start_idx, count):
     return components
 
 def build_manifold_batch():
-    start_index = 1278
-    batch_size = 50  # Scaling up batch throughput
+    start_index = 1328
+    batch_size = 50
     print(f"[*] Compiling Advanced Manifold Batch (Elements {start_index}-{start_index + batch_size - 1})...")
     
     new_modules = generate_infinite_batch(start_index, batch_size)
