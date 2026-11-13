@@ -17,7 +17,7 @@ def generate_infinite_batch(start_idx, count):
         name = f"{arch}-omega-{idx}"
         depth = (i % 8) + 1
         
-        h = depth + ((i * 3 + 1) % 5) - 2
+        h = depth + ((i * 3 + 2) % 5) - 2
         k = -depth
         l = 1
         m = -1
@@ -39,7 +39,7 @@ def generate_infinite_batch(start_idx, count):
     return components
 
 def build_manifold_batch():
-    start_index = 1328
+    start_index = 1378
     batch_size = 50
     print(f"[*] Compiling Advanced Manifold Batch (Elements {start_index}-{start_index + batch_size - 1})...")
     
