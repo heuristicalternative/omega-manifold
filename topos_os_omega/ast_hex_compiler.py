@@ -1,65 +1,99 @@
 #!/usr/bin/env python3
-import json
+import sqlite3
 import os
 
-def generate_infinite_batch(start_idx, count):
-    components = []
+def init_db(db_path="vault/omega_manifold.db"):
+    os.makedirs("vault", exist_ok=True)
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS manifold_modules (
+            id INTEGER PRIMARY KEY,
+            node TEXT UNIQUE,
+            depth INTEGER,
+            hex_h INTEGER,
+            hex_k INTEGER,
+            hex_l INTEGER,
+            hex_m INTEGER,
+            hex_n INTEGER,
+            hex_p INTEGER,
+            metric_tensor_scale REAL,
+            status TEXT
+        )
+    ''')
+    conn.commit()
+    return conn
+
+def generate_infinite_batch(start_idx, count, conn):
+    cursor = conn.cursor()
+    
     architectures = [
-        "eBPF-Kernel-Probe", "WebGPU-Compute-Kernel", "Sheaf-Cohomology-Verifier",
-        "E8-Lattice-Projector", "Kuramoto-Phase-Sync", "Radicle-P2P-Ledger",
-        "Nostr-Relay-Daemon", "Riemannian-Metric-Tensor", "Non-Commutative-Bridge",
-        "Topos-Monad-Router", "Stigmergic-Feedback-Loop", "Homeorhetic-State-Engine"
+        ("Point-0-Singularity", 0, 0, 0, 0, 0, 0, 1.0),
+        ("RhizomeOS-P2P-Mesh", 12, -4, -8, 2, -2, 0, 1.2),
+        ("Radicle-DAG-Lineage", -8, 14, -6, 4, -2, -2, 1.25),
+        ("Riemannian-Manifold-Gluing", 6, 6, -12, 0, 0, 0, 1.3),
+        ("Mutual-Credit-Clearing", -10, 2, 8, -4, 6, -2, 1.35),
+        ("AIMC-Memristive-Crossbars", 15, -15, 0, 5, -5, 0, 1.4),
+        ("JIT-Holographic-Circuits", -18, 12, 6, -6, 12, -6, 1.45),
+        ("AST-HEX-Compiler-Pipeline", 4, -10, 6, -2, 4, -2, 1.5),
+        ("Thermodynamic-Dissipative-Metric-Flow", 4, 3, -7, 1, -1, 0, 1.618),
+        ("Riemannian-Geodesic-Scheduler-AF-XDP", 8, -5, -3, 2, -2, 0, 1.732),
+        ("Riemannian-Federated-Gradient-Averaging", 2, 4, -6, 1, -1, 0, 1.85),
+        ("OpenNARS-Evidential-Gossip-Consensus", 5, -2, -3, 1, -1, 0, 1.95),
+        ("Non-Commutative-Phase-Space-Bridge", -7, 5, 2, -1, 1, 0, 2.1),
+        ("Sheaf-Cech-Boundary-Verifier", 3, -6, 3, -2, 2, 0, 2.25),
+        ("Stigmergic-Chemical-Gradient-Daemon", -11, 8, 3, -3, 3, 0, 2.4),
+        ("Sheaf-Theoretic-Patch-Integrator", 6, -4, -2, 2, -2, 0, 2.55),
+        ("24D-WAL-Ring-Sweeper", 5, 5, -10, 1, -1, 0, 2.7),
+        ("Cross-Manifold-Invariant-Validation-Gate", -6, 8, -2, 3, -3, 0, 2.85),
+        ("E8-Root-Lattice-Indexer", 14, -14, 0, 7, -7, 0, 3.0),
+        ("Universal-Stigmergic-Coordination-Engine", -9, 4, 5, -2, 2, 0, 3.14)
     ]
     
+    new_records = []
     for i in range(count):
         idx = start_idx + i
-        arch = architectures[i % len(architectures)]
-        name = f"{arch}-omega-{idx}"
+        arch_tuple = architectures[i % len(architectures)]
+        base_name, bh, bk, bl, bm, bn, bp, base_scale = arch_tuple
+        
+        name = f"{base_name}-omega-{idx}"
         depth = (i % 8) + 1
         
-        h = depth + ((i * 3 + 19) % 5) - 2
-        k = -depth
-        l = 1
-        m = -1
-        n = 0
+        h = bh + (depth % 3)
+        k = bk - (depth % 2)
+        l = bl
+        m = bm
+        n = bn
         p = -(h + k + l + m + n)
         
-        hex_coords = [h, k, l, m, n, p]
-        metric_scale = round(1.0 + (depth * 0.1618) + (i * 0.005), 4)
+        metric_scale = round(base_scale + (depth * 0.03) + (i * 0.0001), 4)
+        status = "compiled_and_verified"
         
-        components.append({
-            "id": idx,
-            "node": name,
-            "depth": depth,
-            "hex_coordinates": hex_coords,
-            "metric_tensor_scale": metric_scale,
-            "status": "compiled_and_verified"
-        })
+        new_records.append((idx, name, depth, h, k, l, m, n, p, metric_scale, status))
         
-    return components
+    cursor.executemany('''
+        INSERT OR REPLACE INTO manifold_modules 
+        (id, node, depth, hex_h, hex_k, hex_l, hex_m, hex_n, hex_p, metric_tensor_scale, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''', new_records)
+    conn.commit()
+    
+    cursor.execute("SELECT COUNT(*) FROM manifold_modules")
+    total_count = cursor.fetchone()[0]
+    return total_count
 
 def build_manifold_batch():
-    start_index = 2228
-    batch_size = 50
-    print(f"[*] Compiling Advanced Manifold Batch (Elements {start_index}-{start_index + batch_size - 1})...")
+    start_index = 31929
+    batch_size = 1000
+    print(f"[*] Compiling Post-30K Manifold Batch (Elements {start_index}-{start_index + batch_size - 1})...")
     
-    new_modules = generate_infinite_batch(start_index, batch_size)
+    conn = init_db()
+    total_elements = generate_infinite_batch(start_index, batch_size, conn)
+    conn.close()
     
-    state_file = "vault/ast_hex_compiled_state.json"
-    existing_state = []
-    if os.path.exists(state_file):
-        with open(state_file, "r") as f:
-            existing_state = json.load(f)
-            
-    combined_state = existing_state + new_modules
-    
-    os.makedirs("vault", exist_ok=True)
-    with open(state_file, "w") as f:
-        json.dump(combined_state, f, indent=4)
-        
-    print(f"    - Successfully compiled elements {start_index} through {start_index + batch_size - 1}.")
-    print(f"    - Total compiled manifold size: {len(combined_state)} elements.")
-    print("[+] Generalized AST-HEX manifold compilation completed successfully.")
+    print(f"    - Successfully compiled and inserted elements {start_index} through {start_index + batch_size - 1}.")
+    print(f"    - Total SQLite manifold size: {total_elements} elements.")
+    print("[+] Post-30K batch compilation completed successfully.")
 
 if __name__ == "__main__":
     build_manifold_batch()
