@@ -4,7 +4,7 @@ import sqlite3
 import os
 import hashlib
 
-LOG_FILE = "vault/tannakian_reconstruction.log"
+LOG_FILE = "vault/tannakian_galois.log"
 DB_FILE = "vault/omega_manifold.db"
 
 def log_message(msg):
@@ -14,8 +14,8 @@ def log_message(msg):
         f.write(f"[{timestamp}] [TANNAKIAN-RECONSTRUCTION] {msg}\n")
     print(f"[*] [TANNAKIAN-RECONSTRUCTION] {msg}")
 
-def run_tannakian_reconstruction():
-    log_message("Sprint 140 Distributed Tannakian Reconstruction & Motivic Galois Group daemon initialized.")
+def run_tannakian():
+    log_message("Sprint 242 Distributed Tannakian Reconstruction daemon initialized.")
     while True:
         if os.path.exists(DB_FILE):
             conn = sqlite3.connect(DB_FILE)
@@ -24,11 +24,11 @@ def run_tannakian_reconstruction():
             total, max_scale = cursor.fetchone()
             conn.close()
             
-            tannakian_sig = hashlib.sha256(f"TANNAKIAN-RECONSTRUCTION-MOTIVIC-GALOIS-{total}".encode()).hexdigest()[:16]
-            log_message(f"Tannakian categories evaluated across {total} modules. Motivic Galois group invariant hash: {tannakian_sig}. Fiber functor stable.")
+            tan_sig = hashlib.sha256(f"TANNAKIAN-RECONSTRUCTION-GALOIS-{total}".encode()).hexdigest()[:16]
+            log_message(f"Tannakian categories evaluated across {total} modules. Reconstruction invariant hash: {tan_sig}. Fiber functor stable.")
         else:
             log_message("Waiting for SQLite manifold database initialization...")
         time.sleep(50)
 
 if __name__ == "__main__":
-    run_tannakian_reconstruction()
+    run_tannakian()

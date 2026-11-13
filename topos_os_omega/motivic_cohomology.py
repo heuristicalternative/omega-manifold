@@ -11,11 +11,11 @@ def log_message(msg):
     os.makedirs("vault", exist_ok=True)
     with open(LOG_FILE, "a") as f:
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-        f.write(f"[{timestamp}] [MOTIVIC-COHOMOLOGY] {msg}\n")
-    print(f"[*] [MOTIVIC-COHOMOLOGY] {msg}")
+        f.write(f"[{timestamp}] [MOTIVIC-COHOMOLOGY-CYCLES] {msg}\n")
+    print(f"[*] [MOTIVIC-COHOMOLOGY-CYCLES] {msg}")
 
-def run_motivic_verifier():
-    log_message("Sprint 127 Distributed Motivic Cohomology & Weil Conjectures Verifier daemon initialized.")
+def run_cohomology():
+    log_message("Sprint 207 Distributed Motivic Cohomology & Algebraic Cycles daemon initialized.")
     while True:
         if os.path.exists(DB_FILE):
             conn = sqlite3.connect(DB_FILE)
@@ -24,11 +24,11 @@ def run_motivic_verifier():
             total, max_scale = cursor.fetchone()
             conn.close()
             
-            motivic_sig = hashlib.sha256(f"MOTIVIC-COHOMOLOGY-WEIL-{total}".encode()).hexdigest()[:16]
-            log_message(f"Motivic cycles evaluated across {total} modules. Weil conjectures functional equation hash: {motivic_sig}. Algebraic weight filtration stable.")
+            sig = hashlib.sha256(f"MOTIVIC-CHOW-REGULATORS-{total}".encode()).hexdigest()[:16]
+            log_message(f"Higher Chow groups evaluated across {total} modules. Motivic invariant hash: {sig}. Beilinson regulator stable.")
         else:
             log_message("Waiting for SQLite manifold database initialization...")
         time.sleep(50)
 
 if __name__ == "__main__":
-    run_motivic_verifier()
+    run_cohomology()

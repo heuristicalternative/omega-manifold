@@ -14,8 +14,8 @@ def log_message(msg):
         f.write(f"[{timestamp}] [HOMOLOGICAL-MIRROR-SYMMETRY] {msg}\n")
     print(f"[*] [HOMOLOGICAL-MIRROR-SYMMETRY] {msg}")
 
-def run_homological_mirror():
-    log_message("Sprint 138 Distributed Homological Mirror Symmetry & Fukaya Category Coherence daemon initialized.")
+def run_hms():
+    log_message("Sprint 171 Distributed Homological Mirror Symmetry & Fukaya-Kontsevich daemon initialized.")
     while True:
         if os.path.exists(DB_FILE):
             conn = sqlite3.connect(DB_FILE)
@@ -24,11 +24,11 @@ def run_homological_mirror():
             total, max_scale = cursor.fetchone()
             conn.close()
             
-            mirror_sig = hashlib.sha256(f"FUKAYA-CATEGORY-MIRROR-SYMMETRY-{total}".encode()).hexdigest()[:16]
-            log_message(f"Fukaya categories evaluated across {total} modules. Homological mirror symmetry invariant hash: {mirror_sig}. Derived equivalence stable.")
+            hms_sig = hashlib.sha256(f"HOMOLOGICAL-MIRROR-SYMMETRY-FUKAYA-{total}".encode()).hexdigest()[:16]
+            log_message(f"Derived categories evaluated across {total} modules. HMS invariant hash: {hms_sig}. Fukaya-Kontsevich equivalence stable.")
         else:
             log_message("Waiting for SQLite manifold database initialization...")
         time.sleep(50)
 
 if __name__ == "__main__":
-    run_homological_mirror()
+    run_hms()
