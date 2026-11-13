@@ -16,7 +16,7 @@ def generate_batch_modules(start_idx, count):
         name = f"{family}-v{idx}"
         depth = (i % 6) + 1
         
-        h = depth + ((i + 7) % 3)
+        h = depth + ((i + 8) % 3)
         k = -depth
         l = 1
         m = -1
@@ -37,9 +37,9 @@ def generate_batch_modules(start_idx, count):
     return components
 
 def build_manifold_batch():
-    print("[*] Compiling Batch (Elements 1218-1247) of Omega Manifold Modules...")
+    print("[*] Compiling Batch (Elements 1248-1277) of Omega Manifold Modules...")
     
-    start_index = 1218
+    start_index = 1248
     batch_size = 30
     new_modules = generate_batch_modules(start_index, batch_size)
     
